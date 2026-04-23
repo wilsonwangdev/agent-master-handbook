@@ -38,9 +38,8 @@ trigger: any git branch, commit, or PR operation
 
 ### Hygiene / 卫生
 
+- After PR merge: `npm run clean-branches` to delete all merged local branches
 - Before starting work: `git fetch -p && git branch -v` to see stale branches
-- After PR merge: delete the local branch
-- Periodically verify local main matches remote: `git log --oneline main..origin/main`
-- Dangling objects from rebase/amend are normal; `git gc` handles them
+- Prefer automated cleanup commands over manual branch deletion
 
-开始工作前检查过期分支。PR 合并后删除本地分支。定期验证本地 main 与远程一致。
+PR 合并后：`npm run clean-branches` 自动清理已合并的本地分支。开始工作前检查过期分支。优先使用自动化清理命令而非手动删除。

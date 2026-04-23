@@ -20,7 +20,7 @@ npm run build
 
 ## 结构
 
-完整架构地图见 [CLAUDE.md](CLAUDE.md)。
+完整架构地图见 [AGENTS.md](AGENTS.md)（也可通过 CLAUDE.md、.cursorrules、.windsurfrules 软链接访问）。
 
 ## 贡献
 

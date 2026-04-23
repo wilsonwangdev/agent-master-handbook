@@ -20,7 +20,7 @@ npm run build
 
 ## Structure
 
-See [CLAUDE.md](CLAUDE.md) for the full architecture map.
+See [AGENTS.md](AGENTS.md) for the full architecture map (also accessible as CLAUDE.md, .cursorrules, .windsurfrules via symlinks).
 
 ## Contributing
 

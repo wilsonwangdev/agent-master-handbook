@@ -6,11 +6,17 @@ Current status and next steps for agent-master. Each item links to a GitHub issu
 
 - [x] Merge foundational PRs (#2 infra, #3 rules, #4 design, #5 contributing, #6 spec)
 - [x] Enable GitHub Pages deployment
-- [ ] Fix site base path for GitHub Pages (#9)
-- [ ] Merge pending PRs (#7 clean-branches fix, #9 base path, #10 typography, #11 dev server)
+- [x] Fix site base path for GitHub Pages (#9)
+- [x] Fix clean-branches for squash merge (#7)
+- [x] Upgrade typography (#10)
+- [x] Add dev server and watch mode (#11)
+- [ ] Make AGENTS.md the canonical entry point with symlinks (#14)
+- [ ] Add pre-work checklist to prevent PR scope creep (#13)
+- [ ] Merge remaining PRs (#13, #14, #15, #16)
 
 ## Next
 
+- [ ] Add multi-agent collaboration guide: document how different agents (Claude Code, Cursor, Codex, Windsurf) interact with AGENTS.md and the symlink strategy
 - [ ] Add MCP concept article (EN+ZH)
 - [ ] Add Prompt Engineering concept article (EN+ZH)
 - [ ] Curate more articles: Anthropic managed agents, agent evals
@@ -20,6 +26,7 @@ Current status and next steps for agent-master. Each item links to a GitHub issu
 
 ## Later
 
+- [ ] Multi-agent orchestration patterns: how multiple agents collaborate on the same repo (concurrent PRs, conflict resolution, shared context)
 - [ ] Client-side search for the site
 - [ ] Expand submodule references
 - [ ] Community contribution workflow validation

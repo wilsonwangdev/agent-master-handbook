@@ -4,9 +4,10 @@ Current status and next steps for agent-master. Each item links to a GitHub issu
 
 ## Now
 
-- [ ] Merge foundational PRs (#2 infra, #3 rules, #4 design)
-- [ ] Enable GitHub Pages deployment
-- [ ] Validate site renders correctly on Pages
+- [x] Merge foundational PRs (#2 infra, #3 rules, #4 design, #5 contributing, #6 spec)
+- [x] Enable GitHub Pages deployment
+- [ ] Fix site base path for GitHub Pages (#9)
+- [ ] Merge pending PRs (#7 clean-branches fix, #9 base path, #10 typography, #11 dev server)
 
 ## Next
 
@@ -15,6 +16,7 @@ Current status and next steps for agent-master. Each item links to a GitHub issu
 - [ ] Curate more articles: Anthropic managed agents, agent evals
 - [ ] Add AI Native workflow guide (EN+ZH)
 - [ ] First verified skill definition
+- [ ] Light/dark theme toggle (currently dark-only with prefers-color-scheme fallback)
 
 ## Later
 
@@ -23,6 +25,7 @@ Current status and next steps for agent-master. Each item links to a GitHub issu
 - [ ] Community contribution workflow validation
 - [ ] Explore MCP server integration for content management
 - [ ] i18n beyond EN/ZH
+- [ ] Evaluate lightweight framework (Astro, Eleventy) if build.mjs complexity exceeds maintainability threshold (see journal/2026-04-24-github-pages-deployment.md for trigger conditions)
 
 ## Principles
 

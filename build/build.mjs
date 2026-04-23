@@ -7,6 +7,7 @@ const ROOT = new URL('..', import.meta.url).pathname.replace(/\/$/, '');
 const CONTENT_DIR = join(ROOT, 'content');
 const TEMPLATE_DIR = join(ROOT, 'build', 'templates');
 const SITE_DIR = join(ROOT, 'site');
+const BASE = process.env.BASE_PATH || '';
 
 function parseFrontmatter(raw) {
   const match = raw.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
@@ -57,15 +58,15 @@ async function buildPages() {
     const section = rel.split('/')[0] || 'root';
 
     const pairLang = lang === 'en' ? 'zh' : 'en';
-    const pairPath = meta.pair ? `/${pairLang}/${rel}/` : '';
+    const pairPath = meta.pair ? `${BASE}/${pairLang}/${rel}/` : '';
 
     const pageHtml = render(pageTemplate, { title: meta.title || '', content: html, lang, pairPath, pairLang });
-    const fullHtml = render(baseTemplate, { title: meta.title || 'agent-master', lang, body: pageHtml });
+    const fullHtml = render(baseTemplate, { title: meta.title || 'agent-master', lang, body: pageHtml, base: BASE });
 
     const outPath = join(SITE_DIR, lang, rel, 'index.html');
     await mkdir(dirname(outPath), { recursive: true });
     await writeFile(outPath, fullHtml);
-    pages.push({ title: meta.title, lang, section, path: `/${lang}/${rel}/`, status: meta.status });
+    pages.push({ title: meta.title, lang, section, path: `${BASE}/${lang}/${rel}/`, status: meta.status });
   }
   return pages;
 }
@@ -91,15 +92,15 @@ async function buildIndex(pages) {
     }
 
     const pairLang = lang === 'en' ? 'zh' : 'en';
-    const indexHtml = render(indexTemplate, { lang, listings: listingsHtml, pairLang });
-    const fullHtml = render(baseTemplate, { title: 'agent-master', lang, body: indexHtml });
+    const indexHtml = render(indexTemplate, { lang, listings: listingsHtml, pairLang, base: BASE });
+    const fullHtml = render(baseTemplate, { title: 'agent-master', lang, body: indexHtml, base: BASE });
 
     const outPath = join(SITE_DIR, lang, 'index.html');
     await mkdir(dirname(outPath), { recursive: true });
     await writeFile(outPath, fullHtml);
   }
 
-  const rootRedirect = '<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=/en/"></head></html>';
+  const rootRedirect = `<!DOCTYPE html><html><head><meta http-equiv="refresh" content="0;url=${BASE}/en/"></head></html>`;
   await writeFile(join(SITE_DIR, 'index.html'), rootRedirect);
 }
 

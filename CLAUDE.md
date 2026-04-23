@@ -28,7 +28,7 @@ npm run dev       # build + local preview at http://localhost:3000
 npm run watch     # auto-rebuild on content/ or build/ changes (run in separate terminal)
 ```
 
-Local development: run `npm run watch` in one terminal (auto-rebuilds on file changes), and `npm run dev` in another (serves the site). Refresh browser after rebuild.
+Local development: run `npm run watch` in one terminal, `npm run dev` in another, refresh browser after rebuild. Note: `npm run dev` uses `python3 http.server` (pre-installed on macOS/Linux; Windows users need Python installed or can use `npx serve site` as alternative). Cross-platform dev server is tracked in ROADMAP under framework evaluation.
 
 ## Safety
 

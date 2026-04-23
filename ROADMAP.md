@@ -25,7 +25,7 @@ Current status and next steps for agent-master. Each item links to a GitHub issu
 - [ ] Community contribution workflow validation
 - [ ] Explore MCP server integration for content management
 - [ ] i18n beyond EN/ZH
-- [ ] Evaluate lightweight framework (Astro, Eleventy) if build.mjs complexity exceeds maintainability threshold (see journal/2026-04-24-github-pages-deployment.md for trigger conditions)
+- [ ] Evaluate lightweight framework (Astro, Eleventy) if build.mjs complexity exceeds maintainability threshold — also resolves cross-platform dev server (see journal/2026-04-24-github-pages-deployment.md for trigger conditions)
 
 ## Principles
 

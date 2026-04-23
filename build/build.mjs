@@ -49,20 +49,23 @@ async function buildPages() {
     const { meta, body } = parseFrontmatter(raw);
     const html = marked(body);
     const lang = meta.lang || (basename(file).startsWith('zh') ? 'zh' : 'en');
-    const rel = relative(CONTENT_DIR, file).replace(/\.(en|zh)\.md$|\.md$/, '');
-    const dir = dirname(rel);
-    const section = dir.split('/')[0] || 'root';
+    const rel = relative(CONTENT_DIR, file)
+      .replace(/\.(en|zh)\.md$/, '.md')
+      .replace(/\.md$/, '')
+      .replace(/\/(en|zh)$/, '')
+      .replace(/\/index$/, '');
+    const section = rel.split('/')[0] || 'root';
 
     const pairLang = lang === 'en' ? 'zh' : 'en';
-    const pairPath = meta.pair ? `/${pairLang}/${dir}/` : '';
+    const pairPath = meta.pair ? `/${pairLang}/${rel}/` : '';
 
     const pageHtml = render(pageTemplate, { title: meta.title || '', content: html, lang, pairPath, pairLang });
     const fullHtml = render(baseTemplate, { title: meta.title || 'agent-master', lang, body: pageHtml });
 
-    const outPath = join(SITE_DIR, lang, dir, 'index.html');
+    const outPath = join(SITE_DIR, lang, rel, 'index.html');
     await mkdir(dirname(outPath), { recursive: true });
     await writeFile(outPath, fullHtml);
-    pages.push({ title: meta.title, lang, section, path: `/${lang}/${dir}/`, status: meta.status });
+    pages.push({ title: meta.title, lang, section, path: `/${lang}/${rel}/`, status: meta.status });
   }
   return pages;
 }

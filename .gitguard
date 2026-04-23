@@ -1,0 +1,6 @@
+# .gitguard — patterns that must not appear in committed files.
+# One pattern per line. Lines starting with # are ignored.
+# This file is checked by .husky/pre-commit before each commit.
+#
+# Add patterns here when PII or secrets are discovered.
+# Keep patterns specific to avoid false positives.

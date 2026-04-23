@@ -1,0 +1,6 @@
+[submodule "references/anthropic-cookbook"]
+	path = references/anthropic-cookbook
+	url = https://github.com/anthropics/anthropic-cookbook.git
+[submodule "references/agentic-coding-skills"]
+	path = references/agentic-coding-skills
+	url = https://github.com/forrestchang/andrej-karpathy-skills.git

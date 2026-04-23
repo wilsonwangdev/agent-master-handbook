@@ -4,9 +4,13 @@
   "type": "module",
   "scripts": {
     "build": "node build/build.mjs",
-    "clean": "rm -rf site"
+    "clean": "rm -rf site",
+    "prepare": "husky"
   },
   "dependencies": {
     "marked": "^15.0.0"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
   }
 }

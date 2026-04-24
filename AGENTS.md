@@ -96,3 +96,13 @@ Atomic commits with prefixes:
 ## Post-Change Review
 
 After modifying files under `build/`, run the build code review skill (`skills/build-code-review.md`) to check for code smells before committing. This catches issues like unparallelized awaits, hardcoded constants, and growing function signatures that agents tend to miss during feature-focused work.
+
+## Quality Baseline
+
+Lighthouse CI runs on every PR. Current baseline (2026-04-24): Performance 100, Accessibility 100, Best Practices 96, SEO 100.
+
+When modifying CSS, templates, or font loading:
+- `--muted` color must maintain ≥ 4.5:1 contrast ratio against `--bg`
+- Links in text content must be distinguishable without color (underline)
+- Google Fonts must load non-blocking (preload + media="print" onload pattern)
+- Do not add render-blocking resources to `<head>`

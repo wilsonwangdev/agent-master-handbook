@@ -48,6 +48,16 @@ Local development: run `npm run watch` in one terminal, `npm run dev` in another
 5. Plan PR boundaries: list each independent concern as a separate PR BEFORE writing code. If a task touches unrelated files (e.g. path fix + font change + new command), it is multiple PRs.
 6. Check file overlap between planned PRs. If two PRs modify the same file, declare dependency and define merge order. The later PR rebases after the earlier one merges.
 
+### Pre-work checklist (run before writing code)
+
+Before creating a branch, verify:
+
+- [ ] Can you describe the change in one sentence without "and"? If not, split it.
+- [ ] Does this change have measurable impact at current scale? If not, record the signal for later instead of acting now.
+- [ ] Have you checked if a community skill already solves this? (skills.sh, Claude Code skills, cursor.directory)
+- [ ] Will this change affect Lighthouse scores? If touching CSS, templates, or fonts, review the Quality Baseline in this file.
+- [ ] After modifying `build/`, will you run the build code review skill (`skills/build-code-review.md`)?
+
 ### When diagnosing external system issues (Vercel, GitHub Actions, analytics, MCP, etc.)
 
 1. First: inspect recent commits and diffs — prior attempts are evidence, not noise

@@ -16,6 +16,7 @@ Current status and next steps for agent-master. Each item links to a GitHub issu
 
 ## Next
 
+- [ ] Add skills ecosystem guide: document major skill registries, evaluation criteria, and when to adopt public skills vs write local ones
 - [ ] Add multi-agent collaboration guide: document how different agents (Claude Code, Cursor, Codex, Windsurf) interact with AGENTS.md and the symlink strategy
 - [ ] Add external-system diagnosis playbook: recent commits → official CLI/MCP → docs → inference
 - [ ] Add MCP concept article (EN+ZH)

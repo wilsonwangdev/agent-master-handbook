@@ -19,14 +19,20 @@ Current status and next steps for agent-master. Each item links to a GitHub issu
 - [x] First verified skill definition: build code review (#33)
 - [x] Skills ecosystem guide (EN+ZH) (#34)
 - [x] Make AGENTS.md the canonical entry point with symlinks (#14)
-- [x] Add pre-work checklist to prevent PR scope creep (#13)
-- [ ] Merge remaining PRs (#13, #14, #15, #16)
-- [x] GEO: per-page Markdown output and `<link rel="alternate" type="text/markdown">` (SPEC 005 Phase 7 remainder)
-- [x] Lighthouse baseline evaluation and targeted remediation (SPEC 005 Phase 8)
-- [x] Journal: record premature optimization lesson from build.mjs parallelization
+- [x] Add pre-work checklist to prevent PR scope creep (#13, #43)
+- [ ] Merge remaining PRs (#15, #16)
+- [x] GEO: per-page Markdown output and `<link rel="alternate" type="text/markdown">` (#37)
+- [x] Lighthouse baseline evaluation and targeted remediation (#38, #40)
+- [x] Journal: record premature optimization lesson from build.mjs parallelization (#36)
+- [x] Quickstart prompt with copy button on homepage (#46)
+- [x] Pre-work state alignment rule (#48)
+- [x] Content generalization model — SPEC 006 (#50)
 
 ## Next
 
+- [ ] Content generalization Phase 2: generalize existing guides per SPEC 006
+- [ ] Content generalization Phase 3: split skills into generic + project-specific
+- [ ] Content generalization Phase 4: parameterize rules
 - [ ] Add multi-agent collaboration guide: document how different agents (Claude Code, Cursor, Codex, Windsurf) interact with AGENTS.md and the symlink strategy
 - [ ] Add external-system diagnosis playbook: recent commits → official CLI/MCP → docs → inference
 - [ ] Add MCP concept article (EN+ZH)
@@ -34,8 +40,8 @@ Current status and next steps for agent-master. Each item links to a GitHub issu
 - [ ] Curate more articles: Anthropic managed agents, agent evals
 - [ ] Add AI Native workflow guide (EN+ZH)
 - [ ] Light/dark theme toggle (currently dark-only with prefers-color-scheme fallback)
-- [ ] Git conflict prevention guide: conflict-prone code patterns, lint-enforced refactoring thresholds, agent-workflow-specific strategies
-- [ ] Proactive agent review guide: how to make agents surface code smells without human prompting (skills, hooks, lint rules)
+- [x] Git conflict prevention guide (EN+ZH) (#44)
+- [x] Proactive agent review guide (EN+ZH) (#45)
 
 ## Later
 

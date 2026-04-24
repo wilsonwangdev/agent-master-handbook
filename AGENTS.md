@@ -45,8 +45,10 @@ Local development: run `npm run watch` in one terminal, `npm run dev` in another
 2. `npm run clean-branches` — delete merged local branches
 3. `git checkout main && git pull` — ensure main is up to date before branching
 4. `git log --oneline -10` — read recent commits for context on what changed, especially if main was behind remote (signals prior attempts by humans or other agents)
-5. Plan PR boundaries: list each independent concern as a separate PR BEFORE writing code. If a task touches unrelated files (e.g. path fix + font change + new command), it is multiple PRs.
-6. Check file overlap between planned PRs. If two PRs modify the same file, declare dependency and define merge order. The later PR rebases after the earlier one merges.
+5. Check ROADMAP.md — if any recently merged PRs are not checked off, update it now before starting new work
+6. `gh pr list --state open` — check if any open PR has conflicts; if so, rebase it before creating a new branch
+7. Plan PR boundaries: list each independent concern as a separate PR BEFORE writing code. If a task touches unrelated files (e.g. path fix + font change + new command), it is multiple PRs.
+8. Check file overlap between planned PRs. If two PRs modify the same file, declare dependency and define merge order. The later PR rebases after the earlier one merges.
 
 ### When diagnosing external system issues (Vercel, GitHub Actions, analytics, MCP, etc.)
 
@@ -64,14 +66,6 @@ Local development: run `npm run watch` in one terminal, `npm run dev` in another
 - Atomic commits: one logical change, prefixed message explaining why.
 - After PR merge: `npm run clean-branches`
 - See `rules/git-workflow.md` and `specs/004-pr-boundaries.md` for full rules.
-
-### After every PR merge (mandatory)
-
-1. `git checkout main && git pull` — sync local main
-2. `npm run clean-branches` — delete merged local branches
-3. Update `ROADMAP.md` — check off the completed item and link the PR number
-4. `gh pr list --state open` — check if any open PR now has conflicts due to the merge; if so, rebase it before starting new work
-5. `git branch -r | grep -v main` — verify no stale remote branches accumulate
 
 ## Content Conventions
 

@@ -38,30 +38,31 @@ trigger: any git branch, commit, or PR operation
 
 ### Hygiene / 卫生
 
-- After PR merge: `npm run clean-branches` to delete all merged local branches
-- Before starting work: `git fetch -p && git branch -v` to see stale branches
+- Before starting work: `git fetch -p && npm run clean-branches` to sync and clean
 - Prefer automated cleanup commands over manual branch deletion
 
-PR 合并后：`npm run clean-branches` 自动清理已合并的本地分支。开始工作前检查过期分支。优先使用自动化清理命令而非手动删除。
+开始工作前：`git fetch -p && npm run clean-branches` 同步并清理。优先使用自动化清理命令而非手动删除。
 
-### Post-Merge Checklist / 合并后检查清单
+### Pre-Work State Alignment / 开始工作前的状态对齐
 
-After every PR merge, execute these steps before starting new work:
+PR merges happen on the remote at unknown times. Agents cannot detect them in-session. Therefore all state alignment must happen at the start of work, not "after merge."
 
-1. `git checkout main && git pull` — sync local main
-2. `npm run clean-branches` — delete merged local branches
-3. Update `ROADMAP.md` — check off the completed item with PR number
-4. `gh pr list --state open` — check if any open PR now has conflicts; rebase if so
-5. `git branch -r | grep -v main` — verify no stale remote branches accumulate
+Before creating a new branch, verify:
 
-Skipping this checklist causes: stale ROADMAP, conflicting PRs discovered late, and branch clutter that confuses future agents.
+1. `git fetch -p && npm run clean-branches` — sync and clean
+2. `git checkout main && git pull` — ensure main is current
+3. `git log --oneline -10` — read recent merges for context
+4. Check `ROADMAP.md` — if recently merged PRs are not checked off, update now
+5. `gh pr list --state open` — if any open PR has conflicts, rebase it first
 
-每次 PR 合并后，在开始新工作前执行以下步骤：
+This catches all state drift regardless of when or by whom PRs were merged.
 
-1. `git checkout main && git pull` — 同步本地 main
-2. `npm run clean-branches` — 删除已合并的本地分支
-3. 更新 `ROADMAP.md` — 勾选已完成项并标注 PR 编号
-4. `gh pr list --state open` — 检查是否有 open PR 因合并产生冲突，如有则 rebase
-5. `git branch -r | grep -v main` — 确认没有过期远端分支堆积
+PR 合并发生在远端的未知时间，agent 在会话中无法感知。因此所有状态对齐必须在开始工作时进行，而不是"合并后"。
 
-跳过此清单会导致：ROADMAP 失真、冲突 PR 被延迟发现、分支混乱影响后续 agent 工作。
+创建新分支前，验证：
+
+1. `git fetch -p && npm run clean-branches` — 同步并清理
+2. `git checkout main && git pull` — 确保 main 是最新的
+3. `git log --oneline -10` — 阅读最近合并的上下文
+4. 检查 `ROADMAP.md` — 如果最近合并的 PR 未勾选，立即更新
+5. `gh pr list --state open` — 如果有 open PR 存在冲突，先 rebase

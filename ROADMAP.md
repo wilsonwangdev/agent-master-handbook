@@ -17,6 +17,7 @@ Current status and next steps for agent-master. Each item links to a GitHub issu
 ## Next
 
 - [ ] Add multi-agent collaboration guide: document how different agents (Claude Code, Cursor, Codex, Windsurf) interact with AGENTS.md and the symlink strategy
+- [ ] Add external-system diagnosis playbook: recent commits → official CLI/MCP → docs → inference
 - [ ] Add MCP concept article (EN+ZH)
 - [ ] Add Prompt Engineering concept article (EN+ZH)
 - [ ] Curate more articles: Anthropic managed agents, agent evals

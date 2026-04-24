@@ -92,6 +92,8 @@ All artifacts belong to one of three layers. Identify the layer before writing:
 - **Layer 2 — Distributable Tools** (`skills/`, `rules/`, quickstart prompt): Must work in any repo without modification, or clearly document what to adapt. No hardcoded paths or scripts.
 - **Layer 3 — Project Practice** (`AGENTS.md`, `journal/`, `.claude/`): Can and should reference specific files, scripts, and conventions of this repository.
 
+Abstraction vs specificity is this project's core tension. For Layer 1 and Layer 2, lead with intent, then offer platform-specific implementations as adaptation notes. If you notice a guide, skill, or rule binding itself to a single tool or platform, flag it — even if you wrote it in a previous session.
+
 ## Commit Conventions
 
 Atomic commits with prefixes:

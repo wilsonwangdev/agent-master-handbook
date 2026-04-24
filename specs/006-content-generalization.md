@@ -118,6 +118,99 @@ When in doubt about which layer something belongs to, ask:
 - Only with adaptation → Layer 2 (with clear adaptation notes)
 - No → Layer 3
 
+## Abstraction Level Principle
+
+The three-layer model defines WHERE content goes. This principle defines HOW it is written.
+
+Layer 1 and Layer 2 content must describe **intent**, not **implementation**. Binding to a specific tool turns universal guidance into a single-vendor instruction that breaks when the reader uses a different stack.
+
+### Pattern: Intent + Adaptation
+
+Instead of:
+
+```
+Run `gh pr list --state open` to check for conflicting PRs.
+```
+
+Write:
+
+```
+Check if any open merge/pull request has conflicts.
+(GitHub: `gh pr list`, GitLab: `glab mr list`, Bitbucket: `bb pr list`)
+```
+
+The intent ("check for conflicting PRs") is universal. The implementation varies by platform.
+
+### Where this applies
+
+- **Git hosting**: GitHub / GitLab / Bitbucket — CLI commands, PR/MR terminology, CI systems
+- **Package managers**: npm / pnpm / yarn / bun — scripts, install commands, lockfiles
+- **Agent tools**: Claude Code / Cursor / Windsurf / Codex — config file names, skill formats, hook mechanisms
+- **Languages and frameworks**: Node / Python / Go — build commands, test runners, project structure conventions
+
+### Where specificity is acceptable
+
+- Layer 3 (project practice): always specific — that's its purpose
+- Layer 2 adaptation notes: specific commands inside clearly marked "adapt to your project" blocks
+- Layer 1 callout blocks: specific examples inside clearly marked "Example from a [type] project:" blocks
+
+### The tension
+
+More abstract = more portable but less actionable.
+More specific = more actionable but less portable.
+
+The resolution is not to pick one extreme. It is to **lead with intent, follow with implementations**. The reader gets the universal principle first, then finds their specific tool in the adaptation notes.
+
+## Distributable Isolation Principle
+
+This project is both a knowledge base ABOUT agent-ready practices AND a repository that PRACTICES them. This creates a risk: distributable artifacts (templates, quickstart prompts, example configs) can collide with the project's own runtime files.
+
+### The collision problem
+
+If the project distributes an AGENTS.md template and also has its own AGENTS.md, an agent working in this repo cannot distinguish "this is an instruction I should follow" from "this is a template I should copy for the user."
+
+### Rule: physical separation
+
+Distributable templates and examples must live in a dedicated directory (e.g., `templates/` or `dist/`) that is:
+- Clearly marked in AGENTS.md as "not project instructions — these are for distribution"
+- Never symlinked or referenced as project configuration
+- Excluded from agent tool auto-discovery paths (not named AGENTS.md, CLAUDE.md, .cursorrules at the repo root)
+
+### Current state
+
+The quickstart prompt (`build/data/quickstart.{en,zh}.md`) is safe — it is a prompt that tells an agent to CREATE files, not a file that could be mistaken for project configuration. But as the project grows to include more distributable artifacts, this principle must be enforced.
+
+## Continuous Evolution Mechanism
+
+The abstraction-vs-specificity balance is the core design tension of this project. It cannot be resolved once and frozen — it requires ongoing review as content grows and the ecosystem evolves.
+
+### Abstraction Review Trigger
+
+An abstraction review is triggered when any of the following occur:
+
+1. A new guide, skill, or rule is added — the author must declare its layer and verify abstraction level before merge
+2. A user or contributor reports that content is too project-specific or too abstract to be useful
+3. A distributable artifact is found to reference project-specific tooling
+4. The project adds support for a new platform or tool (e.g., adding GitLab CI support) — all existing Layer 1 and Layer 2 content must be audited for single-platform assumptions
+
+### Review Process
+
+When triggered:
+1. Identify the affected files and their current layer assignment
+2. Check each file against the Boundary Principle and Abstraction Level Principle
+3. For violations: propose a concrete fix (generalize, split, or reclassify)
+4. Record the review outcome in a journal entry if it reveals a systemic pattern
+
+### Evolution Log
+
+Significant abstraction decisions and their rationale should be recorded in `journal/` entries tagged as `type: abstraction-review`. This creates a traceable history of how the project's generalization stance evolves over time.
+
+### Agent Guidance for Evolution
+
+Add to AGENTS.md:
+
+> This project's core tension is between abstraction (portability) and specificity (actionability). When writing Layer 1 or Layer 2 content, lead with intent, follow with platform-specific implementations. When you notice content that binds to a single tool or platform, flag it — even if you wrote it yourself in a previous session. The goal is not perfection but continuous improvement of the abstraction boundary.
+
 ## Agent Guidance
 
 Add to AGENTS.md:

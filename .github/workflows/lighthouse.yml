@@ -1,0 +1,31 @@
+name: Lighthouse CI
+
+on:
+  pull_request:
+    branches: [main]
+
+jobs:
+  lighthouse:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: SITE_URL=https://agent-master-green.vercel.app npm run build
+
+      - name: Start server
+        run: npx serve site -l 3000 &
+
+      - name: Wait for server
+        run: npx wait-on http://localhost:3000
+
+      - name: Run Lighthouse
+        uses: treosh/lighthouse-ci-action@v12
+        with:
+          urls: |
+            http://localhost:3000/en/
+            http://localhost:3000/en/concepts/harness-engineering/
+          budgetPath: .github/lighthouse-budget.json
+          uploadArtifacts: true

@@ -43,3 +43,25 @@ trigger: any git branch, commit, or PR operation
 - Prefer automated cleanup commands over manual branch deletion
 
 PR 合并后：`npm run clean-branches` 自动清理已合并的本地分支。开始工作前检查过期分支。优先使用自动化清理命令而非手动删除。
+
+### Post-Merge Checklist / 合并后检查清单
+
+After every PR merge, execute these steps before starting new work:
+
+1. `git checkout main && git pull` — sync local main
+2. `npm run clean-branches` — delete merged local branches
+3. Update `ROADMAP.md` — check off the completed item with PR number
+4. `gh pr list --state open` — check if any open PR now has conflicts; rebase if so
+5. `git branch -r | grep -v main` — verify no stale remote branches accumulate
+
+Skipping this checklist causes: stale ROADMAP, conflicting PRs discovered late, and branch clutter that confuses future agents.
+
+每次 PR 合并后，在开始新工作前执行以下步骤：
+
+1. `git checkout main && git pull` — 同步本地 main
+2. `npm run clean-branches` — 删除已合并的本地分支
+3. 更新 `ROADMAP.md` — 勾选已完成项并标注 PR 编号
+4. `gh pr list --state open` — 检查是否有 open PR 因合并产生冲突，如有则 rebase
+5. `git branch -r | grep -v main` — 确认没有过期远端分支堆积
+
+跳过此清单会导致：ROADMAP 失真、冲突 PR 被延迟发现、分支混乱影响后续 agent 工作。

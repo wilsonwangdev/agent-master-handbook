@@ -65,6 +65,14 @@ Local development: run `npm run watch` in one terminal, `npm run dev` in another
 - After PR merge: `npm run clean-branches`
 - See `rules/git-workflow.md` and `specs/004-pr-boundaries.md` for full rules.
 
+### After every PR merge (mandatory)
+
+1. `git checkout main && git pull` — sync local main
+2. `npm run clean-branches` — delete merged local branches
+3. Update `ROADMAP.md` — check off the completed item and link the PR number
+4. `gh pr list --state open` — check if any open PR now has conflicts due to the merge; if so, rebase it before starting new work
+5. `git branch -r | grep -v main` — verify no stale remote branches accumulate
+
 ## Content Conventions
 
 - Each content piece lives in its own directory with `en.md` and `zh.md`

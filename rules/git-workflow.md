@@ -38,8 +38,31 @@ trigger: any git branch, commit, or PR operation
 
 ### Hygiene / 卫生
 
-- After PR merge: `npm run clean-branches` to delete all merged local branches
-- Before starting work: `git fetch -p && git branch -v` to see stale branches
+- Before starting work: `git fetch -p && npm run clean-branches` to sync and clean
 - Prefer automated cleanup commands over manual branch deletion
 
-PR 合并后：`npm run clean-branches` 自动清理已合并的本地分支。开始工作前检查过期分支。优先使用自动化清理命令而非手动删除。
+开始工作前：`git fetch -p && npm run clean-branches` 同步并清理。优先使用自动化清理命令而非手动删除。
+
+### Pre-Work State Alignment / 开始工作前的状态对齐
+
+PR merges happen on the remote at unknown times. Agents cannot detect them in-session. Therefore all state alignment must happen at the start of work, not "after merge."
+
+Before creating a new branch, verify:
+
+1. `git fetch -p && npm run clean-branches` — sync and clean
+2. `git checkout main && git pull` — ensure main is current
+3. `git log --oneline -10` — read recent merges for context
+4. Check `ROADMAP.md` — if recently merged PRs are not checked off, update now
+5. `gh pr list --state open` — if any open PR has conflicts, rebase it first
+
+This catches all state drift regardless of when or by whom PRs were merged.
+
+PR 合并发生在远端的未知时间，agent 在会话中无法感知。因此所有状态对齐必须在开始工作时进行，而不是"合并后"。
+
+创建新分支前，验证：
+
+1. `git fetch -p && npm run clean-branches` — 同步并清理
+2. `git checkout main && git pull` — 确保 main 是最新的
+3. `git log --oneline -10` — 阅读最近合并的上下文
+4. 检查 `ROADMAP.md` — 如果最近合并的 PR 未勾选，立即更新
+5. `gh pr list --state open` — 如果有 open PR 存在冲突，先 rebase

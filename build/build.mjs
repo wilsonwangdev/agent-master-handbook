@@ -137,10 +137,17 @@ async function buildPages() {
 }
 
 async function buildIndex(pages) {
-  const [baseTemplate, indexTemplate] = await Promise.all([
+  const [baseTemplate, indexTemplate, promptEn, promptZh] = await Promise.all([
     loadTemplate('base.html'),
     loadTemplate('index.html'),
+    readFile(join(ROOT, 'build', 'data', 'quickstart.en.md'), 'utf-8'),
+    readFile(join(ROOT, 'build', 'data', 'quickstart.zh.md'), 'utf-8'),
   ]);
+  const prompts = { en: promptEn.trim(), zh: promptZh.trim() };
+  const i18n = {
+    en: { quickstartTitle: 'Quick Start', quickstartDesc: 'Copy this prompt into any AI coding agent to set up an agent-ready harness environment.', copyLabel: 'Copy', quickstartHint: 'Works with Claude Code, Cursor, Windsurf, Codex, and other agents. Run before or after your framework scaffold.' },
+    zh: { quickstartTitle: '快速开始', quickstartDesc: '将此提示词复制到任意 AI 编码工具中，即可搭建 agent-ready harness 环境。', copyLabel: '复制', quickstartHint: '适用于 Claude Code、Cursor、Windsurf、Codex 等 agent 工具。可在框架脚手架之前或之后运行。' },
+  };
 
   for (const lang of ['en', 'zh']) {
     const langPages = pages.filter(p => p.lang === lang && p.status !== 'hidden');
@@ -168,6 +175,8 @@ async function buildIndex(pages) {
       lang, listings: listingsHtml, pairLang, base: SITE.base,
       siteName: SITE.name, siteTagline: SITE.tagline,
       contributeUrl: `${SITE.repo}/blob/main/CONTRIBUTING.md`,
+      quickstartPrompt: prompts[lang],
+      ...i18n[lang],
     });
     const fullHtml = render(baseTemplate, {
       title: SITE.name, lang, body: indexHtml, base: SITE.base,

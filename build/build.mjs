@@ -86,9 +86,12 @@ async function buildPages() {
     const pairCanonicalUrl = (SITE_URL && meta.pair) ? `${SITE_URL}/${pairLang}/${rel}/` : '';
     const ogLocale = lang === 'en' ? 'en_US' : 'zh_CN';
     const noindex = NOINDEX ? '<meta name="robots" content="noindex,follow">' : '';
+    const sectionTitle = section.charAt(0).toUpperCase() + section.slice(1);
+    const homePath = `${BASE}/${lang}/`;
+    const sectionPath = `${BASE}/${lang}/`;
     const jsonLd = buildJsonLd({ title: meta.title, description, lang, canonicalUrl, lastUpdated: meta.lastUpdated, type: 'Article' });
 
-    const pageHtml = render(pageTemplate, { title: meta.title || '', content: html, lang, pairPath, pairLang });
+    const pageHtml = render(pageTemplate, { title: meta.title || '', content: html, lang, pairPath, pairLang, sectionTitle, homePath, sectionPath });
     const rssUrl = SITE_URL ? `${SITE_URL}/${lang}/feed.xml` : `${BASE}/${lang}/feed.xml`;
     const fullHtml = render(baseTemplate, {
       title: meta.title || 'agent-master', lang, body: pageHtml, base: BASE,

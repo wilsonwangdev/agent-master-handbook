@@ -190,6 +190,27 @@ li::marker {
 
 /* --- Page Header --- */
 
+.breadcrumbs {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.02em;
+}
+
+.breadcrumbs a {
+  color: var(--muted);
+}
+
+.breadcrumbs a:hover {
+  color: var(--accent);
+}
+
+.breadcrumbs .sep {
+  margin: 0 0.4em;
+  opacity: 0.5;
+}
+
 .page-header {
   display: flex;
   justify-content: space-between;
@@ -200,6 +221,42 @@ li::marker {
 }
 
 .page-content { max-width: 42rem; }
+
+.page-footer {
+  margin-top: 3rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+}
+
+.page-footer a {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+.page-footer a:hover {
+  color: var(--accent);
+}
+
+/* --- Header Actions --- */
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.contribute-link {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+
+.contribute-link:hover {
+  color: var(--accent);
+}
 
 /* --- Sections (Index) --- */
 

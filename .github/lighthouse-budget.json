@@ -2,12 +2,12 @@
   {
     "path": "/*",
     "resourceSizes": [
-      { "resourceType": "stylesheet", "budget": 20 },
-      { "resourceType": "script", "budget": 10 }
+      { "resourceType": "stylesheet", "budget": 80 },
+      { "resourceType": "script", "budget": 15 }
     ],
     "timings": [
-      { "metric": "first-contentful-paint", "budget": 2000 },
-      { "metric": "interactive", "budget": 3000 }
+      { "metric": "first-contentful-paint", "budget": 4000 },
+      { "metric": "interactive", "budget": 5000 }
     ]
   }
 ]

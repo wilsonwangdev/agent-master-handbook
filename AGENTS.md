@@ -44,8 +44,17 @@ Local development: run `npm run watch` in one terminal, `npm run dev` in another
 1. `git fetch -p` — sync remote state and prune deleted branches
 2. `npm run clean-branches` — delete merged local branches
 3. `git checkout main && git pull` — ensure main is up to date before branching
-4. Plan PR boundaries: list each independent concern as a separate PR BEFORE writing code. If a task touches unrelated files (e.g. path fix + font change + new command), it is multiple PRs.
-5. Check file overlap between planned PRs. If two PRs modify the same file, declare dependency and define merge order. The later PR rebases after the earlier one merges.
+4. `git log --oneline -10` — read recent commits for context on what changed, especially if main was behind remote (signals prior attempts by humans or other agents)
+5. Plan PR boundaries: list each independent concern as a separate PR BEFORE writing code. If a task touches unrelated files (e.g. path fix + font change + new command), it is multiple PRs.
+6. Check file overlap between planned PRs. If two PRs modify the same file, declare dependency and define merge order. The later PR rebases after the earlier one merges.
+
+### When diagnosing external system issues (Vercel, GitHub Actions, analytics, MCP, etc.)
+
+1. First: inspect recent commits and diffs — prior attempts are evidence, not noise
+2. Then: use official CLI tools (`vercel`, `gh`, etc.) or MCP servers to query real state
+3. Then: consult official documentation
+4. Last resort: inference and experimentation
+- Never skip steps 1-2 and jump to guessing. See `rules/external-system-diagnosis.md`.
 
 ### Branch and PR rules
 

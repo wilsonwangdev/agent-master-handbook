@@ -26,3 +26,5 @@ All content lives under `content/` organized by type, with strict quality gates.
 2. Structure can be placeholder; content cannot be filler
 3. All references must be traceable to authoritative primary sources
 4. Cutting-edge but stable — only concepts with established consensus
+5. Project-specific incident reports, deployment logs, and one-off tool integrations do **not** belong in `content/` by default. They belong in `journal/` unless they can be abstracted into a reusable, broadly applicable guide that fits the site's scope.
+6. Before adding new content, ask: "Is this a project-local lesson, or a reusable agent/harness pattern other projects can adopt?" Only the latter belongs in `content/`.

@@ -21,9 +21,9 @@ Current status and next steps for agent-master. Each item links to a GitHub issu
 - [ ] Make AGENTS.md the canonical entry point with symlinks (#14)
 - [ ] Add pre-work checklist to prevent PR scope creep (#13)
 - [ ] Merge remaining PRs (#13, #14, #15, #16)
-- [ ] GEO: per-page Markdown output and `<link rel="alternate" type="text/markdown">` (SPEC 005 Phase 7 remainder)
-- [ ] Lighthouse baseline evaluation and targeted remediation (SPEC 005 Phase 8)
-- [ ] Journal: record premature optimization lesson from build.mjs parallelization
+- [x] GEO: per-page Markdown output and `<link rel="alternate" type="text/markdown">` (SPEC 005 Phase 7 remainder)
+- [x] Lighthouse baseline evaluation and targeted remediation (SPEC 005 Phase 8)
+- [x] Journal: record premature optimization lesson from build.mjs parallelization
 
 ## Next
 

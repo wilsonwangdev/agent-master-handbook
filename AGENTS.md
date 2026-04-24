@@ -92,3 +92,7 @@ Atomic commits with prefixes:
 - Roadmap shows what to work on next → `ROADMAP.md`
 - Contribution guidelines → `CONTRIBUTING.md`
 - This repo dogfoods its own practices
+
+## Post-Change Review
+
+After modifying files under `build/`, run the build code review skill (`skills/build-code-review.md`) to check for code smells before committing. This catches issues like unparallelized awaits, hardcoded constants, and growing function signatures that agents tend to miss during feature-focused work.

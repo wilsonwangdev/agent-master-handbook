@@ -1,0 +1,62 @@
+[
+  {
+    "year": "2023.01",
+    "title": "提示词工程",
+    "credits": [
+      { "name": "OpenAI", "url": "https://platform.openai.com/docs/guides/prompt-engineering" }
+    ],
+    "desc": "人人学会和 AI 对话。精心设计提示词成为 ChatGPT 时代的标志性技能。"
+  },
+  {
+    "year": "2023.03",
+    "title": "LLM Agents",
+    "credits": [
+      { "name": "ReAct", "url": "https://arxiv.org/abs/2210.03629" },
+      { "name": "AutoGPT", "url": "https://github.com/Significant-Gravitas/AutoGPT" }
+    ],
+    "desc": "AI 开始自主行动——浏览网页、编写代码、执行多步计划，无需人工干预。"
+  },
+  {
+    "year": "2024.03",
+    "title": "Agentic Coding",
+    "credits": [
+      { "name": "Cognition (Devin)", "url": "https://www.cognition-labs.com/introducing-devin" },
+      { "name": "Cursor", "url": "https://www.cursor.com/" }
+    ],
+    "desc": "AI 编程工具交付真实代码。Devin、Cursor、Claude Code 将自主编程变为产品。"
+  },
+  {
+    "year": "2024.11",
+    "title": "MCP 协议",
+    "credits": [
+      { "name": "Anthropic", "url": "https://www.anthropic.com/news/model-context-protocol" }
+    ],
+    "desc": "模型上下文协议为 AI 提供了连接工具与数据的通用标准——\"AI 的 USB-C\"。"
+  },
+  {
+    "year": "2025.02",
+    "title": "Vibe Coding",
+    "credits": [
+      { "name": "Andrej Karpathy", "url": "https://x.com/karpathy/status/1886192184808149383" }
+    ],
+    "desc": "\"完全沉浸在氛围中，忘记代码的存在。\" 开发者与代码关系的文化转变。"
+  },
+  {
+    "year": "2025.06",
+    "title": "上下文工程",
+    "credits": [
+      { "name": "Tobi Lütke", "url": "https://x.com/tobi/status/1935533422589399127" },
+      { "name": "Andrej Karpathy", "url": "https://x.com/karpathy/status/1937902205765607626" }
+    ],
+    "desc": "从写提示词到设计信息架构。用恰到好处的信息填充上下文窗口的艺术与科学。"
+  },
+  {
+    "year": "2026.03",
+    "title": "Harness 工程",
+    "credits": [
+      { "name": "Viv Trivedy", "url": "https://blog.langchain.com/the-anatomy-of-an-agent-harness/" },
+      { "name": "Martin Fowler", "url": "https://martinfowler.com/articles/harness-engineering.html" }
+    ],
+    "desc": "Agent = 模型 + Harness。构建模型周围的系统，让 AI Agent 在生产环境中可靠工作。"
+  }
+]

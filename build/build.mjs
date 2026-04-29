@@ -136,17 +136,53 @@ async function buildPages() {
   return pages;
 }
 
+function buildTimelineHtml(items, title) {
+  let nodes = '';
+  const last = items.length - 1;
+  for (let i = 0; i < items.length; i++) {
+    const item = items[i];
+    const pos = i % 2 === 0 ? 'above' : 'below';
+    const col = i + 1;
+    const colStyle = `style="grid-column:${col}"`;
+    const edge = i === 0 ? ' edge-start' : i === last ? ' edge-end' : '';
+    const creditsHtml = item.credits
+      .map(c => `<a href="${c.url}" target="_blank" rel="noopener">${c.name}</a>`)
+      .join(' · ');
+    nodes += `<div class="timeline-node ${pos}" role="listitem">` +
+      `<div class="timeline-card${edge}" ${colStyle}>` +
+      `<span class="timeline-year">${item.year}</span>` +
+      `<h3>${item.title}</h3>` +
+      `<span class="timeline-credit">${creditsHtml}` +
+      `<span class="timeline-info" role="button" aria-label="Details" tabindex="0">i` +
+      `<span class="timeline-tip">${item.desc}</span>` +
+      `</span></span>` +
+      `</div>` +
+      `<div class="timeline-stem" aria-hidden="true" ${colStyle}></div>` +
+      `<div class="timeline-dot" aria-hidden="true" ${colStyle}></div>` +
+      `</div>`;
+  }
+  return `<section class="timeline" aria-label="${title}">` +
+    `<h2>${title}</h2>` +
+    `<div class="timeline-scroll">` +
+    `<div class="timeline-track" role="list">${nodes}</div>` +
+    `</div>` +
+    `</section>`;
+}
+
 async function buildIndex(pages) {
-  const [baseTemplate, indexTemplate, promptEn, promptZh] = await Promise.all([
+  const [baseTemplate, indexTemplate, promptEn, promptZh, timelineEn, timelineZh] = await Promise.all([
     loadTemplate('base.html'),
     loadTemplate('index.html'),
     readFile(join(ROOT, 'build', 'data', 'quickstart.en.md'), 'utf-8'),
     readFile(join(ROOT, 'build', 'data', 'quickstart.zh.md'), 'utf-8'),
+    readFile(join(ROOT, 'build', 'data', 'timeline.en.json'), 'utf-8'),
+    readFile(join(ROOT, 'build', 'data', 'timeline.zh.json'), 'utf-8'),
   ]);
   const prompts = { en: promptEn.trim(), zh: promptZh.trim() };
+  const timelines = { en: JSON.parse(timelineEn), zh: JSON.parse(timelineZh) };
   const i18n = {
-    en: { quickstartTitle: 'Quick Start', quickstartDesc: 'Copy this prompt into any AI coding agent to set up an agent-ready harness environment.', copyLabel: 'Copy', quickstartHint: 'Works with Claude Code, Cursor, Windsurf, Codex, and other agents. Run before or after your framework scaffold.' },
-    zh: { quickstartTitle: '快速开始', quickstartDesc: '将此提示词复制到任意 AI 编码工具中，即可搭建 agent-ready harness 环境。', copyLabel: '复制', quickstartHint: '适用于 Claude Code、Cursor、Windsurf、Codex 等 agent 工具。可在框架脚手架之前或之后运行。' },
+    en: { quickstartTitle: 'Quick Start', quickstartDesc: 'Copy this prompt into any AI coding agent to set up an agent-ready harness environment.', copyLabel: 'Copy', quickstartHint: 'Works with Claude Code, Cursor, Windsurf, Codex, and other agents. Run before or after your framework scaffold.', timelineTitle: 'Evolution of Agent Practices' },
+    zh: { quickstartTitle: '快速开始', quickstartDesc: '将此提示词复制到任意 AI 编码工具中，即可搭建 agent-ready harness 环境。', copyLabel: '复制', quickstartHint: '适用于 Claude Code、Cursor、Windsurf、Codex 等 agent 工具。可在框架脚手架之前或之后运行。', timelineTitle: 'Agent 实践演进' },
   };
 
   for (const lang of ['en', 'zh']) {
@@ -171,8 +207,10 @@ async function buildIndex(pages) {
       : `${SITE.tagline}——面向 agent 实践者的概念、指南、精选文章与 agent-ready 实践。`;
     const canonicalUrl = SITE.url ? `${SITE.url}/${lang}/` : '';
 
+    const timelineHtml = buildTimelineHtml(timelines[lang], i18n[lang].timelineTitle);
+
     const indexHtml = render(indexTemplate, {
-      lang, listings: listingsHtml, pairLang, base: SITE.base,
+      lang, listings: listingsHtml, timeline: timelineHtml, pairLang, base: SITE.base,
       siteName: SITE.name, siteTagline: SITE.tagline,
       contributeUrl: `${SITE.repo}/blob/main/CONTRIBUTING.md`,
       quickstartPrompt: prompts[lang],

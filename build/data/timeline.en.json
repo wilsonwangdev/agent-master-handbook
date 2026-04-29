@@ -1,0 +1,62 @@
+[
+  {
+    "year": "2023.01",
+    "title": "Prompt Engineering",
+    "credits": [
+      { "name": "OpenAI", "url": "https://platform.openai.com/docs/guides/prompt-engineering" }
+    ],
+    "desc": "Everyone learned to talk to AI. Crafting effective prompts became the defining skill of the ChatGPT era."
+  },
+  {
+    "year": "2023.03",
+    "title": "LLM Agents",
+    "credits": [
+      { "name": "ReAct", "url": "https://arxiv.org/abs/2210.03629" },
+      { "name": "AutoGPT", "url": "https://github.com/Significant-Gravitas/AutoGPT" }
+    ],
+    "desc": "AI began acting autonomously — browsing, coding, and executing multi-step plans without human intervention."
+  },
+  {
+    "year": "2024.03",
+    "title": "Agentic Coding",
+    "credits": [
+      { "name": "Cognition (Devin)", "url": "https://www.cognition-labs.com/introducing-devin" },
+      { "name": "Cursor", "url": "https://www.cursor.com/" }
+    ],
+    "desc": "AI coding agents shipped real code. Devin, Cursor, and Claude Code turned autonomous programming into a product."
+  },
+  {
+    "year": "2024.11",
+    "title": "MCP",
+    "credits": [
+      { "name": "Anthropic", "url": "https://www.anthropic.com/news/model-context-protocol" }
+    ],
+    "desc": "Model Context Protocol gave AI a universal connector to tools and data — the \"USB-C of AI.\""
+  },
+  {
+    "year": "2025.02",
+    "title": "Vibe Coding",
+    "credits": [
+      { "name": "Andrej Karpathy", "url": "https://x.com/karpathy/status/1886192184808149383" }
+    ],
+    "desc": "\"Fully give in to the vibes, forget that the code even exists.\" A cultural shift in how developers relate to code."
+  },
+  {
+    "year": "2025.06",
+    "title": "Context Engineering",
+    "credits": [
+      { "name": "Tobi Lütke", "url": "https://x.com/tobi/status/1935533422589399127" },
+      { "name": "Andrej Karpathy", "url": "https://x.com/karpathy/status/1937902205765607626" }
+    ],
+    "desc": "From writing prompts to designing information architecture. The art of filling the context window with just the right information."
+  },
+  {
+    "year": "2026.03",
+    "title": "Harness Engineering",
+    "credits": [
+      { "name": "Viv Trivedy", "url": "https://blog.langchain.com/the-anatomy-of-an-agent-harness/" },
+      { "name": "Martin Fowler", "url": "https://martinfowler.com/articles/harness-engineering.html" }
+    ],
+    "desc": "Agent = Model + Harness. Building the systems around models that make AI agents reliable in production."
+  }
+]

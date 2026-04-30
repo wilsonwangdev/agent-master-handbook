@@ -15,7 +15,7 @@ Catch engineering issues that agents tend to miss when focused on feature implem
 
 ## Checklist
 
-Scan the changed code (or the full build file if doing a health check) for these specific patterns:
+Scan the changed code (or the full build file if doing a health check) for these patterns. Any numeric thresholds below are heuristics, not hard rules:
 
 ### Async parallelization
 - Are there sequential `await` calls where the operations have no data dependency on each other?

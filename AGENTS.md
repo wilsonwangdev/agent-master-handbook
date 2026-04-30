@@ -83,13 +83,16 @@ Before creating a branch, verify:
 - Each content piece lives in its own directory with `en.md` and `zh.md`
 - Frontmatter: `title`, `lang`, `pair`, `lastUpdated`, `status` (draft|published)
 - All content must come from authoritative, verified sources
+- For external information, prefer primary sources (official docs, standards, author blogs, original posts, source repos) and keep claims traceable
+- Avoid copying or restating large secondary summaries when a curated link-first entry point would serve better
+- The handbook should aggregate, contextualize, and guide readers to source ecosystems — not become a stale duplicate of them
 - Empty structure > low-quality placeholder content
 
 ### Content Layers (see SPEC 006)
 
 All artifacts belong to one of three layers. Identify the layer before writing:
 
-- **Layer 1 — Universal Content** (`content/`): No project-specific references. Must be useful to any practitioner with any tech stack. Use generic examples; if illustrating with this project, use a clearly marked callout block.
+- **Layer 1 — Universal Content** (`content/`): No project-specific references. Must be useful to any practitioner with any tech stack. Use generic examples; if illustrating with this project, use a clearly marked callout block. For ecosystem or externally-derived information, prefer curated summaries with explicit primary-source links over copied secondary explanations.
 - **Layer 2 — Distributable Tools** (`skills/`, `rules/`, quickstart prompt): Must work in any repo without modification, or clearly document what to adapt. No hardcoded paths or scripts.
 - **Layer 3 — Project Practice** (`AGENTS.md`, `journal/`, `.claude/`): Can and should reference specific files, scripts, and conventions of this repository.
 

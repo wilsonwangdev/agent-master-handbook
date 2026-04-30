@@ -1,6 +1,6 @@
 ---
 title: "Navigating the Agent Skills Ecosystem"
-description: "A practical guide to finding, evaluating, and integrating community skills from skills.sh, Claude Code, Cursor, and other registries into an agent-ready project."
+description: "A practical guide to finding, evaluating, and integrating community skills from primary sources such as skills.sh, Claude Code, Cursor, and the Agent Skills specification."
 lang: en
 pair: zh.md
 lastUpdated: 2026-04-30
@@ -17,51 +17,96 @@ Skills are one of the most effective ways to improve agent performance without r
 
 This makes them a core harness engineering lever.
 
-## The Current Ecosystem
+## Use This Guide as an Entry Point
 
-Several registries and directories now exist for discovering agent skills:
+This guide is intentionally link-first.
 
-### skills.sh
+The skills ecosystem changes quickly, so this page should not try to become a copied snapshot of every platform. Instead, use it to:
 
-The strongest cross-agent option today. Originally launched by Vercel Labs, `skills.sh` acts as an open registry for installable skills and works across Claude Code, Cursor, Codex, Windsurf, and other agents.
+- identify the main places where skills are defined and discovered
+- understand what each source is good for
+- jump to the primary documentation before adopting or publishing anything
 
-Why it matters:
-- One distribution format for multiple agents
-- Simple install flow (`npx skills install <name>`)
-- Fastest-growing public skills ecosystem
+When in doubt, prefer the original specification, official product docs, and canonical repositories over secondary summaries.
+
+## Primary Sources to Start From
+
+### Agent Skills specification
+
+The most important reference is the Agent Skills specification itself.
+
+Primary sources:
+- [Agent Skills specification](https://agentskills.io/specification)
+- [Best practices for skill creators](https://agentskills.io/skill-creation/best-practices)
+- [Optimizing skill descriptions](https://agentskills.io/skill-creation/optimizing-descriptions)
+
+What to use it for:
+- understanding the `SKILL.md` format
+- verifying frontmatter requirements such as `name` and `description`
+- checking portable directory structure and optional fields
 
 ### Claude Code skills
 
-Claude Code has a native skills mechanism based on Markdown files stored under `.claude/skills/` or `~/.claude/skills/`.
+Claude Code provides native support for skills and documents where they live and how they are invoked.
 
-Why it matters:
-- Native integration with Claude Code workflows
-- Easy to keep project-specific
-- Works well for local harness patterns and quality gates
+Primary source:
+- [Claude Code: Extend Claude with skills](https://code.claude.com/docs/en/slash-commands)
 
-### Cursor rules registries
+What to use it for:
+- project and personal skill locations
+- frontmatter fields supported by Claude Code
+- `/skill-name` invocation behavior
+- supporting files, tool permissions, and subagent patterns
 
-Cursor has a strong community around `.cursor/rules/` and `.mdc` rules, with public hubs such as cursor.directory.
+### Cursor rules and skills surface
 
-Why it matters:
-- Strong ecosystem around coding conventions and project behavior
-- Useful source of patterns even when the format differs from Claude Code
+Cursor documents its rules system and marketplace directly.
 
-### Aggregators and marketplaces
+Primary sources:
+- [Cursor Rules documentation](https://cursor.com/docs/rules)
+- [Cursor Marketplace](https://cursor.com/marketplace)
 
-Several meta-directories now index skills across ecosystems. These are useful for exploration, but quality varies more than in curated collections.
+What to use it for:
+- understanding `.md` / `.mdc` rule formats
+- confirming AGENTS.md support
+- checking how Cursor packages and discovers reusable agent extensions
 
-## Where to Look First
+### skills.sh
 
-For practical project work, the search order should be:
+skills.sh is a discovery and installation layer around reusable agent skills.
 
-1. **skills.sh / Vercel Labs ecosystem**
-2. **Official or well-maintained agent-native directories**
-3. **Curated GitHub collections**
-4. **Project-local skills**
-5. **Only then write a new skill**
+Primary sources:
+- [skills.sh directory](https://skills.sh/)
+- [skills.sh documentation](https://skills.sh/docs)
+- [skills CLI documentation](https://skills.sh/docs/cli)
 
-This avoids reinventing mature workflows that the ecosystem already solved.
+What to use it for:
+- discovering installable skills
+- understanding the CLI install flow
+- checking the platform's own description of ecosystem support and trust model
+
+### GitHub Copilot skills
+
+GitHub documents how Copilot uses `SKILL.md` and where skill directories can live.
+
+Primary source:
+- [GitHub Copilot: Create skills](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/create-skills)
+
+What to use it for:
+- confirming that `SKILL.md` is used outside Claude Code
+- checking directory conventions and frontmatter requirements in GitHub's implementation
+
+## What Skills Are Good For
+
+The most useful categories are:
+
+- code review and smell detection
+- environment setup and diagnostics
+- security review and guardrails
+- deployment and platform-specific workflows
+- repeated content or research patterns
+
+Skills are strongest when they encode **judgment checklists** and **workflow memory**, not when they simply restate obvious shell commands.
 
 ## How to Evaluate a Skill
 
@@ -74,95 +119,34 @@ A skill is worth adopting only when it passes four checks:
 
 If any of these fail, the skill becomes noise rather than leverage.
 
-## What Skills Are Good For
+## How to Read the Ecosystem Without Getting Lost
 
-The most useful categories are:
+A practical search order is:
 
-- Code review and smell detection
-- Environment setup and diagnostics
-- Security review and guardrails
-- Deployment and platform-specific workflows
-- Repeated content or research patterns
+1. **Start from the standard** — confirm the format and capability model
+2. **Check the official product docs** — understand how a specific runtime interprets skills
+3. **Check a directory or registry** — discover what is already available
+4. **Only then evaluate community collections or blog posts**
+5. **Only then write a new skill**
 
-Skills are strongest when they encode **judgment checklists** and **workflow memory**, not when they simply restate obvious shell commands.
+This avoids reinventing mature workflows while keeping your understanding anchored in primary sources.
 
-## The Agent Skills Standard
+## A Gap Still Worth Filling: Micro-Pattern Review Skills
 
-The ecosystem is increasingly converging on a common format: one skill per directory, with a `SKILL.md` entry point and YAML frontmatter.
+Even when public registries are rich, local skills remain valuable.
 
-A typical structure looks like this:
+Public ecosystems are usually strongest at workflow-level tasks such as:
+- reviewing a PR
+- running a security review
+- diagnosing deployment issues
 
-```text
-my-skill/
-├── SKILL.md
-├── scripts/
-├── references/
-└── assets/
-```
+Projects still need local or custom skills for micro-pattern review such as:
+- independent `await` calls that should be parallelized
+- repeated constants that should move into shared config
+- growing function signatures that signal refactoring pressure
+- conflict-prone positional APIs
 
-The frontmatter usually carries:
-
-- `name` — the slash command name
-- `description` — what the skill does and when it should be used
-- optional fields such as tool permissions, argument hints, or invocation control
-
-This matters because the format is no longer just a Claude Code detail. It is becoming the practical portability layer across Claude Code, Cursor, Copilot, and emerging package managers such as `gh skill`.
-
-## How to Write a Skill That Is Worth Sharing
-
-A useful public skill is not just a local note pasted into a markdown file. It should meet five bars:
-
-1. **Real problem** — It solves a repeated workflow or recurring review failure.
-2. **Portable wording** — It avoids project-specific paths, script names, and private conventions unless clearly marked as adaptation notes.
-3. **Actionable checklist** — It gives the agent concrete review or execution criteria, not vague advice.
-4. **Clear trigger description** — The `description` explains when the skill should load.
-5. **Small core, optional references** — The main instructions stay concise; long examples or deep references live in supporting files.
-
-In practice, the best skills usually emerge from repeated friction:
-- a review comment that keeps coming back
-- a workflow that agents perform inconsistently
-- a class of bug that tests do not catch well
-
-That is why the most valuable skill source is often not a brainstorm. It is a failure pattern.
-
-## Distribution Channels
-
-Once a skill is genuinely reusable, there are several ways to distribute it:
-
-### Project-local distribution
-
-Commit the skill into the repository and use it as part of the project's own harness.
-
-Best for:
-- repository-specific workflows
-- internal quality gates
-- dogfooding before broader release
-
-### GitHub-native installation
-
-The strongest emerging pattern is GitHub-native installation with `gh skill install`.
-
-Why it matters:
-- installation feels like a package manager flow
-- GitHub becomes the canonical source of the skill
-- versioning and provenance are clearer than copy-paste sharing
-
-### Public directories and registries
-
-Directories such as skills.sh make skills discoverable beyond the repository where they were born.
-
-Best for:
-- cross-project workflows
-- generic review patterns
-- educational discovery and adoption
-
-### Site-hosted documentation
-
-A project site can explain the skill's purpose, design tradeoffs, examples, and contribution path.
-
-This is especially useful when the repository itself is both:
-- a working harness
-- a handbook teaching others how to build one
+These issues often surface only after an agent has already produced working code, which is why project-local skills remain important.
 
 ## From Project Practice to Public Skill
 
@@ -179,29 +163,12 @@ This sequence prevents premature abstraction.
 
 If you start at step 6, you often publish a skill that sounds good but has not survived real usage. If you stop at step 2, you keep solving the same class of problem only for yourself.
 
-The best skills usually begin as project-specific corrections and only later graduate into distributable tools.
-
-The current ecosystem is strong at workflow-level skills such as:
-- review a PR
-- run a security review
-- investigate deployment issues
-
-But it is still weak at micro-pattern detection such as:
-- independent `await` calls that should be parallelized
-- repeated constants that should move into shared config
-- growing function signatures that signal refactoring pressure
-- conflict-prone positional APIs
-
-This gap matters because these are exactly the issues that human reviewers often catch after an agent has already produced working code.
-
-For this reason, project-local skills remain important even in a rich public ecosystem.
-
 ## What This Project Should Do
 
 For Agent Master Handbook, skills should be treated as both:
 
 1. **Project tooling** — skills used to maintain this repository better
-2. **Knowledge content** — skills ecosystem coverage as part of the knowledge base itself
+2. **Knowledge content** — skills ecosystem coverage as part of the handbook itself
 
 That means two parallel tracks:
 
@@ -219,41 +186,14 @@ Examples:
 ### Track 2 — Curate the ecosystem
 
 Document:
-- major skill registries
-- trusted hosting centers
-- high-quality collections
+- primary skill standards and official docs
+- trusted registries and hosting centers
 - criteria for selecting a skill
 - how to evaluate whether a local skill is ready for distribution
 
-### Track 3 — Distribute reusable skills
-
-When a local skill proves valuable and can be generalized, prepare it for wider use:
-- align it to the Agent Skills standard
-- remove repository coupling
-- publish through GitHub-native installation and public directories
-- explain its value and contribution path on the site
-
-## Integration Strategy
-
-The right integration strategy is layered:
-
-- **Public ecosystem first** for mature cross-project workflows
-- **Project-local skills** for repository-specific heuristics
-- **Hooks and config** only when a proven skill should become automatic
-
-This sequence matters. If every behavior is encoded directly in hooks or instructions, the project loses portability and becomes harder to evolve.
-
-## Practical Rule
-
-Before implementing a new agent-facing workflow from scratch, ask:
-
-1. Is there already a public skill for this?
-2. If yes, is it mature enough to adopt?
-3. If not, is this specific enough to this repo that it should become a local skill?
-4. If it is neither mature nor local, should it be a temporary checklist before becoming a skill?
-
-This keeps the harness grounded in real needs rather than speculative abstraction.
+The goal is not to duplicate the ecosystem's documentation. The goal is to help practitioners enter it quickly, with better judgment.
 
 ## Closing
 
 A mature agent-ready project does not just write good instructions. It builds a reusable skill layer, learns from the ecosystem, and contributes back where the ecosystem is still weak.
+

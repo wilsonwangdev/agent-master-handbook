@@ -1,4 +1,4 @@
-# Contributing to agent-master
+# Contributing to Agent Master Handbook
 
 This project welcomes contributions from both humans and AI agents.
 

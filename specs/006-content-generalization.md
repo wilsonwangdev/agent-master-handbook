@@ -29,7 +29,7 @@ All artifacts in this project belong to exactly one of three layers:
 Audience: any practitioner, any project.
 
 Rules:
-- No references to `agent-master`, `build.mjs`, `SITE` config, `npm run clean-branches`, or any project-specific file/script
+- No references to `Agent Master Handbook`, `build.mjs`, `SITE` config, `npm run clean-branches`, or any project-specific file/script
 - Use generic examples: "your build script", "the project's entry point", "a config object"
 - When illustrating a concept with a real example, use clearly marked callout blocks (e.g., "Example from a static site project:") rather than weaving project details into the main narrative
 - The test: could someone with a completely different tech stack read this and find it useful?
@@ -62,7 +62,7 @@ Rules:
 
 | File | Issue |
 |------|-------|
-| `content/guides/skills-ecosystem/` | "For agent-master, skills should be treated as both..." — project name in universal guide |
+| `content/guides/skills-ecosystem/` | "For Agent Master Handbook, skills should be treated as both..." — project name in universal guide |
 | `content/guides/proactive-agent-review/` | "Example: `skills/build-code-review.md` in this project checks for..." — project-specific skill reference |
 | `content/guides/proactive-agent-review/` | References to `build/*` files and PostToolUse hooks on specific paths |
 

@@ -1,6 +1,6 @@
-# agent-master
+# Agent Master Handbook
 
-面向 agent 实践者的 AI Native 知识库——既是学习资源，也是可部署的 agent-ready 基础设施。
+面向 agent 实践者的 AI Native 实践手册——既是学习资源，也是可部署的 agent-ready 基础设施。
 
 以 AI Native 方式构建，项目本身即是方法论的实践。
 

@@ -4,10 +4,11 @@ import { marked } from 'marked';
 import { existsSync } from 'node:fs';
 
 const ROOT = new URL('..', import.meta.url).pathname.replace(/\/$/, '');
+const pkg = JSON.parse(await readFile(join(ROOT, 'package.json'), 'utf-8'));
 
 const SITE = {
-  name: 'agent-master',
-  tagline: 'AI Native Knowledge Base',
+  name: pkg.displayName,
+  tagline: pkg.description,
   repo: 'https://github.com/wilsonwangdev/agent-master',
   base: process.env.BASE_PATH || '',
   url: process.env.SITE_URL || '',
@@ -203,8 +204,8 @@ async function buildIndex(pages) {
 
     const pairLang = lang === 'en' ? 'zh' : 'en';
     const description = lang === 'en'
-      ? `${SITE.tagline} for agent practitioners — concepts, guides, curated articles, and agent-ready practices.`
-      : `${SITE.tagline}——面向 agent 实践者的概念、指南、精选文章与 agent-ready 实践。`;
+      ? `${SITE.tagline} — concepts, guides, curated articles, and agent-ready practices.`
+      : `${SITE.tagline}——概念、指南、精选文章与 agent-ready 实践。`;
     const canonicalUrl = SITE.url ? `${SITE.url}/${lang}/` : '';
 
     const timelineHtml = buildTimelineHtml(timelines[lang], i18n[lang].timelineTitle);

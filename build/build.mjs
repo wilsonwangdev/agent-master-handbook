@@ -9,9 +9,9 @@ const pkg = JSON.parse(await readFile(join(ROOT, 'package.json'), 'utf-8'));
 const SITE = {
   name: pkg.displayName,
   tagline: pkg.description,
-  repo: 'https://github.com/wilsonwangdev/agent-master',
+  repo: typeof pkg.repository === 'string' ? pkg.repository : pkg.repository?.url,
   base: process.env.BASE_PATH || '',
-  url: process.env.SITE_URL || '',
+  url: process.env.SITE_URL || pkg.homepage || '',
   noindex: process.env.NOINDEX === 'true',
   contentDir: join(ROOT, 'content'),
   templateDir: join(ROOT, 'build', 'templates'),
@@ -179,7 +179,10 @@ async function buildIndex(pages) {
     readFile(join(ROOT, 'build', 'data', 'timeline.en.json'), 'utf-8'),
     readFile(join(ROOT, 'build', 'data', 'timeline.zh.json'), 'utf-8'),
   ]);
-  const prompts = { en: promptEn.trim(), zh: promptZh.trim() };
+  const prompts = {
+    en: promptEn.trim().replace('{{siteUrl}}', SITE.url),
+    zh: promptZh.trim().replace('{{siteUrl}}', SITE.url),
+  };
   const timelines = { en: JSON.parse(timelineEn), zh: JSON.parse(timelineZh) };
   const i18n = {
     en: { quickstartTitle: 'Quick Start', quickstartDesc: 'Copy this prompt into any AI coding agent to set up an agent-ready harness environment.', copyLabel: 'Copy', quickstartHint: 'Works with Claude Code, Cursor, Windsurf, Codex, and other agents. Run before or after your framework scaffold.', timelineTitle: 'Evolution of Agent Practices' },

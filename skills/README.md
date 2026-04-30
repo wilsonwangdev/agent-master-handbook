@@ -1,8 +1,8 @@
 # Skills
 
-Reusable agent skills following the [Agent Skills](https://agentskills.io) open standard.
+Reusable agent skills following the [Agent Skills specification](https://agentskills.io/specification).
 
-Each skill is a directory containing a `SKILL.md` entry point with YAML frontmatter. This format is compatible with Claude Code, Cursor, GitHub Copilot, and other agent runtimes that support the standard.
+Each skill is a directory containing a `SKILL.md` entry point with YAML frontmatter. The format is designed for runtimes that implement the specification. In this repository, skills are tested primarily with Claude Code and written to remain portable to other implementations where possible.
 
 ## Structure
 
@@ -16,13 +16,14 @@ skills/
 
 ## Installation
 
-From this repository:
+This repository is the canonical source for these skills.
 
-```bash
-gh skill install wilsonwangdev/agent-master-handbook <skill-name>
-```
+To use a skill, copy the `<skill-name>/` directory into the skill location supported by your runtime.
 
-Or copy the `<skill-name>/` directory into your project's `.claude/skills/` (or equivalent).
+Examples of official runtime docs:
+- [Claude Code skills](https://code.claude.com/docs/en/slash-commands)
+- [GitHub Copilot skills](https://docs.github.com/en/copilot/how-tos/copilot-on-github/customize-copilot/create-skills)
+- [Cursor Rules documentation](https://cursor.com/docs/rules)
 
 ## Quality Gate
 

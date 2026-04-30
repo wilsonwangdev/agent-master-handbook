@@ -23,7 +23,7 @@ Scan the changed CSS, HTML templates, and related JavaScript for these patterns:
 - Is there a directional visual connector (arrow, caret) linking the tooltip to its trigger?
 - Are tooltips near container edges repositioned to stay visible (edge-safe positioning)?
 - Is hover-only content also accessible via keyboard (`focus-visible`) and on touch devices?
-- Is tooltip content concise (under 150 characters)? Longer content belongs in a panel or modal.
+- As a heuristic, is tooltip content concise (roughly under 150 characters)? Longer content often belongs in a panel or modal.
 
 ### Overflow & clipping
 
@@ -41,13 +41,13 @@ Scan the changed CSS, HTML templates, and related JavaScript for these patterns:
 
 - Do show/hide toggles use `opacity` and `transform` transitions rather than hard-switching `display: none`?
 - Does the cursor match the interaction semantics: `pointer` for links/buttons, `help` for info triggers, `default` for non-interactive?
-- Are transition durations in the 150–300ms range? Shorter feels abrupt, longer feels sluggish.
+- As a heuristic, are transition durations in the 150–300ms range? Shorter often feels abrupt, longer often feels sluggish.
 
 ### Responsive parity
 
 - Do hover-dependent interactions have a touch-friendly alternative (tap to toggle, inline display on mobile)?
 - Do horizontal layouts degrade gracefully on narrow viewports (vertical stack, collapse, or scroll)?
-- Do touch targets meet the minimum 44×44px size?
+- As a common mobile guideline, do touch targets aim for roughly 44×44px or larger?
 
 ### Scroll container
 

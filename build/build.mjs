@@ -6,6 +6,23 @@ import { existsSync } from 'node:fs';
 const ROOT = new URL('..', import.meta.url).pathname.replace(/\/$/, '');
 const pkg = JSON.parse(await readFile(join(ROOT, 'package.json'), 'utf-8'));
 
+function slugify(text) {
+  return text.replace(/<[^>]+>/g, '').trim().toLowerCase()
+    .replace(/\s+/g, '-').replace(/[^\p{L}\p{N}\-]/gu, '').replace(/-{2,}/g, '-').replace(/^-|-$/g, '');
+}
+
+const renderer = {
+  heading({ tokens, depth }) {
+    const text = this.parser.parseInline(tokens);
+    if (depth >= 2 && depth <= 3) {
+      const id = slugify(text);
+      return `<h${depth} id="${id}"><a class="heading-anchor" href="#${id}" tabindex="-1" aria-label="Link to ${id}">#</a>${text}</h${depth}>\n`;
+    }
+    return `<h${depth}>${text}</h${depth}>\n`;
+  },
+};
+marked.use({ renderer });
+
 const SITE = {
   name: pkg.displayName,
   tagline: pkg.description,
@@ -96,7 +113,7 @@ async function buildPages() {
   for (const file of files) {
     const raw = await readFile(file, 'utf-8');
     const { meta, body } = parseFrontmatter(raw);
-    const html = marked(body);
+    const html = marked(body).replace(/^<h1[^>]*>[\s\S]*?<\/h1>\n?/, '');
     const lang = meta.lang || (basename(file).startsWith('zh') ? 'zh' : 'en');
     const rel = relative(SITE.contentDir, file)
       .replace(/\.(en|zh)\.md$/, '.md')
@@ -110,8 +127,13 @@ async function buildPages() {
 
     const markdownUrl = SITE.url ? `${SITE.url}/${lang}/${rel}/index.md` : `${SITE.base}/${lang}/${rel}/index.md`;
 
+    const lastUpdatedLabel = meta.lastUpdated
+      ? (lang === 'zh' ? `最后更新：${meta.lastUpdated}` : `Last updated: ${meta.lastUpdated}`)
+      : '';
+
     const pageHtml = render(pageTemplate, {
       title: meta.title || '', content: html, lang,
+      lastUpdatedLabel,
       pairPath: meta.pair ? `${SITE.base}/${pairLang}/${rel}/` : '', pairLang,
       sectionTitle: section.charAt(0).toUpperCase() + section.slice(1),
       homePath: `${SITE.base}/${lang}/`,

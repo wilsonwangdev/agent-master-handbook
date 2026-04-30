@@ -105,7 +105,7 @@ For this reason, project-local skills remain important even in a rich public eco
 
 ## What This Project Should Do
 
-For agent-master, skills should be treated as both:
+For Agent Master Handbook, skills should be treated as both:
 
 1. **Project tooling** — skills used to maintain this repository better
 2. **Knowledge content** — skills ecosystem coverage as part of the knowledge base itself

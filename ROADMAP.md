@@ -1,6 +1,6 @@
 # Roadmap
 
-Current status and next steps for agent-master. Each item links to a GitHub issue when created.
+Current status and next steps for Agent Master Handbook. Each item links to a GitHub issue when created.
 
 ## Now
 

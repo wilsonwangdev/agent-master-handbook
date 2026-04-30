@@ -1,6 +1,6 @@
-# agent-master
+# Agent Master Handbook
 
-An AI Native knowledge base for agent practitioners. Both a learning resource and deployable infrastructure for making any agent environment agent-ready.
+An AI Native handbook for agent practitioners. Both a learning resource and deployable infrastructure for making any agent environment agent-ready.
 
 ## Project Architecture
 

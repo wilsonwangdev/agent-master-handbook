@@ -1,5 +1,7 @@
 {
-  "name": "agent-master",
+  "name": "agent-master-handbook",
+  "displayName": "Agent Master Handbook",
+  "description": "AI Native Handbook for Agent Practitioners",
   "private": true,
   "type": "module",
   "scripts": {

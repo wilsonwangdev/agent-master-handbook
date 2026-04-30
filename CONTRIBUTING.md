@@ -5,7 +5,7 @@ This project welcomes contributions from both humans and AI agents.
 ## Before You Start
 
 1. Read [AGENTS.md](AGENTS.md) — it's the project's architecture map and conventions
-2. Check [open issues](https://github.com/wilsonwangdev/agent-master/issues) for existing tasks
+2. Check [open issues](https://github.com/wilsonwangdev/agent-master-handbook/issues) for existing tasks
 3. Read the relevant `specs/` document if your change touches an existing decision
 
 ## Workflow

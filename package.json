@@ -2,6 +2,11 @@
   "name": "agent-master-handbook",
   "displayName": "Agent Master Handbook",
   "description": "AI Native Handbook for Agent Practitioners",
+  "homepage": "https://agent-master-handbook.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wilsonwangdev/agent-master-handbook"
+  },
   "private": true,
   "type": "module",
   "scripts": {

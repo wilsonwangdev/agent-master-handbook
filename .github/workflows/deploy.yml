@@ -25,7 +25,12 @@ jobs:
         with:
           node-version: 22
       - run: npm ci
-      - run: BASE_PATH=/agent-master SITE_URL=https://agent-master-green.vercel.app NOINDEX=true npm run build
+      - name: Read site config
+        id: cfg
+        run: |
+          echo "SITE_URL=$(node -p 'require("./package.json").homepage')" >> "$GITHUB_OUTPUT"
+          echo "BASE_PATH=/$(node -p 'require("./package.json").name')" >> "$GITHUB_OUTPUT"
+      - run: BASE_PATH=${{ steps.cfg.outputs.BASE_PATH }} SITE_URL=${{ steps.cfg.outputs.SITE_URL }} NOINDEX=true npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site

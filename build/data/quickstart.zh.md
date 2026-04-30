@@ -28,4 +28,4 @@
 - 使用 AGENTS.md（而非 CLAUDE.md）作为规范文件名——它对 agent 工具是中立的
 - 空结构优于低质量占位内容
 - 编写自定义 skill 前先检查社区是否已有（skills.sh、cursor.directory）
-- 参考 https://agent-master-green.vercel.app 获取每项实践的详细指南
+- 参考 {{siteUrl}} 获取每项实践的详细指南

@@ -13,8 +13,8 @@ Enhance the static site with SEO infrastructure, GEO (AI/Agent readability), nav
 
 ## Domain Strategy
 
-- Primary domain: `https://agent-master-green.vercel.app`
-- Backup domain: GitHub Pages (`https://wilsonwangdev.github.io/agent-master`)
+- Primary domain: `https://agent-master-handbook.vercel.app`
+- Backup domain: GitHub Pages (`https://wilsonwangdev.github.io/agent-master-handbook`)
 - All canonical URLs, Open Graph URLs, hreflang alternates, sitemap entries, RSS links, and `llms.txt` links point to the primary Vercel domain
 - GitHub Pages output includes `<meta name="robots" content="noindex,follow">` to prevent duplicate-content indexing
 - Environment variable `SITE_URL` controls the primary domain; `BASE_PATH` remains for path-prefix compatibility

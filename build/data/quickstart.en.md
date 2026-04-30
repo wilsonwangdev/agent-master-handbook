@@ -28,4 +28,4 @@ Set up an agent-ready harness environment for this project following AI Native b
 - Use AGENTS.md (not CLAUDE.md) as the canonical file name — it is agent-tool-neutral
 - Empty structure is better than low-quality placeholder content
 - Check if community skills already exist before writing custom ones (skills.sh, cursor.directory)
-- Reference https://agent-master-green.vercel.app for detailed guides on each practice
+- Reference {{siteUrl}} for detailed guides on each practice

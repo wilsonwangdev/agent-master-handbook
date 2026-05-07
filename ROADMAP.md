@@ -20,13 +20,21 @@ Current status and next steps for Agent Master Handbook. Each item links to a Gi
 - [x] Skills ecosystem guide (EN+ZH) (#34)
 - [x] Make AGENTS.md the canonical entry point with symlinks (#14)
 - [x] Add pre-work checklist to prevent PR scope creep (#13, #43)
-- [ ] Merge remaining PRs (#15, #16)
+- [x] Journal PR conflict prediction failure (#15)
+- [x] Fix dev server 404 using python3 http.server (#16)
 - [x] GEO: per-page Markdown output and `<link rel="alternate" type="text/markdown">` (#37)
 - [x] Lighthouse baseline evaluation and targeted remediation (#38, #40)
 - [x] Journal: record premature optimization lesson from build.mjs parallelization (#36)
 - [x] Quickstart prompt with copy button on homepage (#46)
 - [x] Pre-work state alignment rule (#48)
 - [x] Content generalization model — SPEC 006 (#50)
+- [x] Homepage agent-practice timeline (#52)
+- [x] Rename brand to Agent Master Handbook (#53)
+- [x] Unify site metadata into package.json (#54)
+- [x] Align skills to Agent Skills standard, add frontend interaction review (#55)
+- [x] Skills ecosystem guide standards and distribution expansion (#56)
+- [x] Handbook traceability cleanup for skills ecosystem (#57)
+- [x] Content page UX — dedupe title, heading anchors, spacing, FOUC prevention (#58)
 
 ## Next
 

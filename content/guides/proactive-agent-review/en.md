@@ -3,7 +3,7 @@ title: "Making Agents Proactively Review Their Own Code"
 description: "How to use skills, hooks, and lint rules to make AI agents surface code smells without waiting for human reviewers to point them out."
 lang: en
 pair: zh.md
-lastUpdated: 2026-04-25
+lastUpdated: 2026-05-07
 status: draft
 ---
 
@@ -23,14 +23,16 @@ This is not a capability limitation. The agent can analyze code quality when ask
 
 A skill is a structured checklist that an agent runs after completing a task. It shifts the agent's perspective from "implement the feature" to "review what I just wrote."
 
-Example: `skills/build-code-review.md` in this project checks for:
+A build-focused review skill typically checks for things like:
 - Independent `await` calls that could be `Promise.all`
 - String literals appearing more than once
-- `render()` calls exceeding ~8 keys
-- Duplicated filtering/mapping logic
-- Build file size approaching 300 lines
+- Render or template calls with long and growing argument lists
+- Duplicated filtering or mapping logic
+- A build file approaching a project-specific size or complexity threshold
 
 The skill doesn't fix anything. It surfaces findings so the decision to refactor is explicit.
+
+> **Example from this project:** `skills/build-code-review/SKILL.md` instantiates this pattern for `build/build.mjs` with concrete thresholds (e.g., a ~300-line ceiling). Other projects should pick thresholds that match their own build layer.
 
 ### When to use
 
@@ -38,7 +40,7 @@ After modifying files in a specific domain (build system, API layer, test infras
 
 ### How to trigger
 
-Today: mention in AGENTS.md that the skill should be run after modifying certain files. The agent reads this instruction and follows it.
+Today: list the skill and its trigger files in the project's agent instructions (e.g., AGENTS.md, CLAUDE.md, .cursorrules). The agent reads this instruction and runs the skill after matching file changes.
 
 Future: hooks that automatically invoke the skill after relevant file changes.
 
@@ -46,13 +48,16 @@ Future: hooks that automatically invoke the skill after relevant file changes.
 
 Hooks are automated triggers that run without human prompting. They are the strongest mechanism because they don't depend on the agent remembering to do something.
 
-### Claude Code hooks
+### Common hook points
 
-Claude Code supports hooks at several points:
-- `PostToolUse` — after an Edit or Write tool call
-- `PostCommit` — after a git commit
+Most agent runtimes expose a few hook points:
+- after an editor tool call (e.g., file write or edit)
+- after a git commit
+- before a tool that touches a sensitive surface
 
-A PostToolUse hook on `build/*` files could automatically run the build code review skill after every edit to the build system.
+A post-edit hook scoped to a specific directory (for example, the build layer) can automatically run the matching review skill whenever a file in that directory changes.
+
+> **Example from this project:** A post-edit hook scoped to `build/**` triggers the build code review skill. Agent Skills–compatible runtimes such as Claude Code expose `PostToolUse` and `PostCommit` hook points; other agents may use different names but follow the same pattern.
 
 ### Limitations
 

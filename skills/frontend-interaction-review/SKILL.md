@@ -55,6 +55,21 @@ Scan the changed CSS, HTML templates, and related JavaScript for these patterns:
 - Does the scroll container provide a scroll affordance (visible scrollbar styling, gradient fade, or shadow hint)?
 - Are floating elements inside a scroll container positioned relative to scroll offset, not just the viewport?
 
+### Visual consistency
+
+- Are spacing values referenced through CSS variables (e.g., `--space-sm`, `--space-lg`) rather than bare `rem` or `px` literals? Ad-hoc values drift the layout across iterations.
+- Are all divider-style borders (between sections, cards, or list rows) reviewed as a set? Mixed widths (1px vs 2px) or mixed color tokens (`--border` vs `--border-bright`) create visual noise.
+- Are decorative heading styles (mono font, uppercase, colored labels) scoped to their container (e.g., `.section h3`) rather than declared on the global `h3`? Global decoration leaks into article bodies.
+- Does the dark-theme page inline the critical background/color CSS in `<head>` with a light-mode media query? Without it, the page flashes white on first load while the external stylesheet arrives (FOUC).
+- Are typography fundamentals (body font-size, line-height, paragraph and heading margins) within roughly ±15% of an established baseline such as [GitHub Markdown CSS](https://github.com/sindresorhus/github-markdown-css)? Large deviations usually signal drift rather than intent.
+
+### Heading anchors
+
+- Is the anchor icon positioned on the **left** of the heading (e.g., absolutely positioned with a negative `left`)? Right-side anchors shift horizontally based on heading text length, so their position is unpredictable.
+- Does the anchor use `tabindex="-1"` plus `aria-label` rather than `aria-hidden`? A focusable element with `aria-hidden` triggers browser warnings and breaks assistive technology.
+- Does the slugify function handle non-ASCII characters? JavaScript `\w` only matches ASCII — use `\p{L}\p{N}` with the `u` flag so Chinese, Japanese, and other scripts produce valid anchors.
+- Does clicking an anchor update the URL with `history.replaceState` using `element.getAttribute('href')` (not `element.href`, which resolves to an absolute URL)? This keeps the URL hash in sync without adding history entries for intra-page navigation.
+
 If any of these are found, report them with file path, line numbers, and a concrete suggestion. Do not silently fix — surface the finding so the decision to change is explicit.
 
 ## Output

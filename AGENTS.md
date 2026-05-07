@@ -123,6 +123,12 @@ Atomic commits with prefixes:
 
 After modifying files under `build/`, run the build code review skill (`skills/build-code-review/SKILL.md`) to check for code smells before committing. This catches issues like unparallelized awaits, hardcoded constants, and growing function signatures that agents tend to miss during feature-focused work.
 
+Project-specific parameters for the build code review skill:
+- **Build directory**: `build/`
+- **Main build file**: `build/build.mjs` (ceiling ~300 lines)
+- **Object-parameter key threshold**: ~8 keys before extracting a helper
+- **Centralized config**: `SITE` object in `build/build.mjs` (sourced from `package.json`)
+
 After modifying CSS, templates, or interactive components, run the frontend interaction review skill (`skills/frontend-interaction-review/SKILL.md`) to check for tooltip clipping, overflow conflicts, hover affordance gaps, missing transitions, and responsive parity.
 
 ## Quality Baseline

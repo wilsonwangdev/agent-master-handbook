@@ -140,3 +140,6 @@ When modifying CSS, templates, or font loading:
 - Links in text content must be distinguishable without color (underline)
 - Google Fonts must load non-blocking (preload + media="print" onload pattern)
 - Do not add render-blocking resources to `<head>`
+- Spacing, border widths, and colors in CSS must reference `--space-*`, `--border-*`, and color tokens. Bare `rem`/`px` literals for margin, padding, gap, or border-width are a review finding. See `content/guides/css-variable-consistency/en.md` for the rationale.
+- When adding or changing a divider-style border, audit all existing dividers in the file as a set. Mixed widths (1px vs 2px) or mixed color tokens (`--border` vs `--border-bright`) count as inconsistency.
+- Dark-theme pages must inline the critical `background`/`color` CSS in `<head>` with a light-mode media-query fallback. Without it, first paint flashes white (FOUC) while the external stylesheet arrives.

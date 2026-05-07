@@ -4,7 +4,7 @@ description: "对 Manus 上下文工程经验的解读——在生产级 agent �
 lang: zh
 pair: manus-context-engineering.en.md
 lastUpdated: 2026-04-23
-status: draft
+status: published
 source: https://www.manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus
 ---
 

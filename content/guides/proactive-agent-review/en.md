@@ -4,7 +4,7 @@ description: "How to use skills, hooks, and lint rules to make AI agents surface
 lang: en
 pair: zh.md
 lastUpdated: 2026-05-07
-status: draft
+status: published
 ---
 
 # Making Agents Proactively Review Their Own Code

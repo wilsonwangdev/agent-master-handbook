@@ -4,7 +4,7 @@ description: "Commentary on OpenAI's practical guide — agent architecture patt
 lang: en
 pair: openai-building-agents.zh.md
 lastUpdated: 2026-04-23
-status: draft
+status: published
 source: https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/
 ---
 

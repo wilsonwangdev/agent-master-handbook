@@ -4,7 +4,7 @@ description: "A practical guide to finding, evaluating, and integrating communit
 lang: en
 pair: zh.md
 lastUpdated: 2026-05-07
-status: draft
+status: published
 ---
 
 # Navigating the Agent Skills Ecosystem

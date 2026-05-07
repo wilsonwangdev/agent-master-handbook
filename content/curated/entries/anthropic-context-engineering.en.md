@@ -4,7 +4,7 @@ description: "Commentary on Anthropic's guide to context engineering — managin
 lang: en
 pair: anthropic-context-engineering.zh.md
 lastUpdated: 2026-04-23
-status: draft
+status: published
 source: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
 ---
 

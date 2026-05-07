@@ -4,7 +4,7 @@ description: "A declaration of principles for AI Native software engineering —
 lang: en
 pair: manifesto.zh.md
 lastUpdated: 2026-04-23
-status: draft
+status: published
 ---
 
 # The AI Native Manifesto

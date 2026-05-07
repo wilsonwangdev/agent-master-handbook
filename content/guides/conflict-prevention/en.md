@@ -4,7 +4,7 @@ description: "Practical patterns for reducing merge conflicts when AI agents wor
 lang: en
 pair: zh.md
 lastUpdated: 2026-04-25
-status: draft
+status: published
 ---
 
 # Preventing Git Conflicts in Agent Workflows

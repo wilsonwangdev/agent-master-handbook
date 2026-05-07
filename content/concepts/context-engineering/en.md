@@ -4,7 +4,7 @@ description: "The discipline of designing the complete information payload sent 
 lang: en
 pair: zh.md
 lastUpdated: 2026-04-23
-status: draft
+status: published
 ---
 
 # Context Engineering

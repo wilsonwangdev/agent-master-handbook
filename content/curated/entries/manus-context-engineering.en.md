@@ -4,7 +4,7 @@ description: "Commentary on Manus's lessons in context engineering — practical
 lang: en
 pair: manus-context-engineering.zh.md
 lastUpdated: 2026-04-23
-status: draft
+status: published
 source: https://www.manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus
 ---
 

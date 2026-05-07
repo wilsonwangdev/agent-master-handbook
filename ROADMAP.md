@@ -50,6 +50,7 @@ Current status and next steps for Agent Master Handbook. Each item links to a Gi
 - [ ] Light/dark theme toggle (currently dark-only with prefers-color-scheme fallback)
 - [x] Git conflict prevention guide (EN+ZH) (#44)
 - [x] Proactive agent review guide (EN+ZH) (#45)
+- [x] New-project repository setup checklist (EN+ZH)
 
 ## Later
 

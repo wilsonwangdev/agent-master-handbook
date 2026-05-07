@@ -3,8 +3,8 @@ title: "Context Engineering"
 description: "The discipline of designing the complete information payload sent to an LLM — system prompts, tools, retrieval results, memory, and conversation history — to optimize agent behavior across multi-turn tasks."
 lang: en
 pair: zh.md
-lastUpdated: 2026-04-23
-status: draft
+lastUpdated: 2026-05-07
+status: published
 ---
 
 # Context Engineering

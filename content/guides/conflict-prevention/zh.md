@@ -3,8 +3,8 @@ title: "在 Agent 工作流中预防 Git 冲突"
 description: "减少 AI agent 并行分支工作时合并冲突的实践模式——冲突易发代码模式、lint 阈值和 PR 边界策略。"
 lang: zh
 pair: en.md
-lastUpdated: 2026-04-25
-status: draft
+lastUpdated: 2026-05-07
+status: published
 ---
 
 # 在 Agent 工作流中预防 Git 冲突

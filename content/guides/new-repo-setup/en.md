@@ -4,7 +4,7 @@ description: "A checklist for initializing a new repository so agents and humans
 lang: en
 pair: zh.md
 lastUpdated: 2026-05-07
-status: draft
+status: published
 ---
 
 # New-Project Repository Setup Checklist

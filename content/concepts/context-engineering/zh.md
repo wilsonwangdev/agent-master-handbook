@@ -3,8 +3,8 @@ title: "上下文工程"
 description: "设计和管理发送给 LLM 的完整信息载荷——系统提示、工具、检索结果、记忆和对话历史——以优化 agent 在多轮任务中的行为。"
 lang: zh
 pair: en.md
-lastUpdated: 2026-04-23
-status: draft
+lastUpdated: 2026-05-07
+status: published
 ---
 
 # 上下文工程

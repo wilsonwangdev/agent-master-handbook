@@ -3,8 +3,8 @@ title: "Preventing Git Conflicts in Agent Workflows"
 description: "Practical patterns for reducing merge conflicts when AI agents work on parallel branches — conflict-prone code patterns, lint thresholds, and PR boundary strategies."
 lang: en
 pair: zh.md
-lastUpdated: 2026-04-25
-status: draft
+lastUpdated: 2026-05-07
+status: published
 ---
 
 # Preventing Git Conflicts in Agent Workflows

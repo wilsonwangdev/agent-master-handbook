@@ -3,8 +3,8 @@ title: "Manus: Context Engineering for AI Agents"
 description: "Commentary on Manus's lessons in context engineering — practical patterns for managing LLM context in production agent systems."
 lang: en
 pair: manus-context-engineering.zh.md
-lastUpdated: 2026-04-23
-status: draft
+lastUpdated: 2026-05-07
+status: published
 source: https://www.manus.im/blog/Context-Engineering-for-AI-Agents-Lessons-from-Building-Manus
 ---
 

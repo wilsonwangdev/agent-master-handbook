@@ -3,8 +3,8 @@ title: "Harness 工程"
 description: "搭建 agent-ready 环境的工程学科——系统性地配置、组织和优化项目，使 AI agent 能够高效运作。"
 lang: zh
 pair: en.md
-lastUpdated: 2026-04-23
-status: draft
+lastUpdated: 2026-05-07
+status: published
 ---
 
 # Harness 工程

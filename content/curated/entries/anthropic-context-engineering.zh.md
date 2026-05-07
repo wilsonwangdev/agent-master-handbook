@@ -3,8 +3,8 @@ title: "Anthropic：面向 AI Agent 的有效上下文工程"
 description: "对 Anthropic 上下文工程指南的解读——如何管理系统提示、工具、检索和记忆以构建可靠的 AI agent。"
 lang: zh
 pair: anthropic-context-engineering.en.md
-lastUpdated: 2026-04-23
-status: draft
+lastUpdated: 2026-05-07
+status: published
 source: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
 ---
 

@@ -4,7 +4,7 @@ description: "Why ad-hoc spacing and color values create style drift across agen
 lang: en
 pair: zh.md
 lastUpdated: 2026-05-07
-status: draft
+status: published
 ---
 
 # CSS Variables as Consistency Constraints

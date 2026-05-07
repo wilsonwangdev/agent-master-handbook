@@ -4,7 +4,7 @@ description: "一份实践指南：从原始信源出发，查找、评估并集
 lang: zh
 pair: en.md
 lastUpdated: 2026-05-07
-status: draft
+status: published
 ---
 
 # 如何理解 Agent Skills 生态

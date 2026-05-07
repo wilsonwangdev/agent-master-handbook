@@ -3,7 +3,7 @@ title: "Anthropic: Effective Context Engineering for AI Agents"
 description: "Commentary on Anthropic's guide to context engineering — managing system prompts, tools, retrieval, and memory to build reliable AI agents."
 lang: en
 pair: anthropic-context-engineering.zh.md
-lastUpdated: 2026-04-23
+lastUpdated: 2026-05-07
 status: published
 source: https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents
 ---

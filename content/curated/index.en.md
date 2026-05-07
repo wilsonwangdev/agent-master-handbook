@@ -3,7 +3,7 @@ title: "Curated Articles"
 description: "A curated collection of authoritative articles on AI agent engineering from official sources, with selection rationale and practitioner value analysis."
 lang: en
 pair: index.zh.md
-lastUpdated: 2026-04-23
+lastUpdated: 2026-05-07
 status: published
 ---
 

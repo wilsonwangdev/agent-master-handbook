@@ -3,7 +3,7 @@ title: "OpenAI：构建 Agent 的实践指南"
 description: "对 OpenAI 实践指南的解读——agent 架构模式、工具使用、编排和评估策略。"
 lang: zh
 pair: openai-building-agents.en.md
-lastUpdated: 2026-04-23
+lastUpdated: 2026-05-07
 status: published
 source: https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/
 ---

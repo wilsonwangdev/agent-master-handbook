@@ -3,7 +3,7 @@ title: "OpenAI: A Practical Guide to Building Agents"
 description: "Commentary on OpenAI's practical guide — agent architecture patterns, tool use, orchestration, and evaluation strategies."
 lang: en
 pair: openai-building-agents.zh.md
-lastUpdated: 2026-04-23
+lastUpdated: 2026-05-07
 status: published
 source: https://openai.com/business/guides-and-resources/a-practical-guide-to-building-ai-agents/
 ---

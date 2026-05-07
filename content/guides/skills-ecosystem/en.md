@@ -3,7 +3,7 @@ title: "Navigating the Agent Skills Ecosystem"
 description: "A practical guide to finding, evaluating, and integrating community skills from primary sources such as skills.sh, Claude Code, Cursor, and the Agent Skills specification."
 lang: en
 pair: zh.md
-lastUpdated: 2026-04-30
+lastUpdated: 2026-05-07
 status: draft
 ---
 
@@ -163,35 +163,37 @@ This sequence prevents premature abstraction.
 
 If you start at step 6, you often publish a skill that sounds good but has not survived real usage. If you stop at step 2, you keep solving the same class of problem only for yourself.
 
-## What This Project Should Do
+## What Any Agent-Ready Project Should Do
 
-For Agent Master Handbook, skills should be treated as both:
+Skills should be treated as two things at once:
 
-1. **Project tooling** — skills used to maintain this repository better
-2. **Knowledge content** — skills ecosystem coverage as part of the handbook itself
+1. **Project tooling** — skills used to maintain the repository better
+2. **Knowledge content** — an understanding of the skills ecosystem worth cultivating alongside the code
 
-That means two parallel tracks:
+This implies two parallel tracks.
 
 ### Track 1 — Dogfood skills in the repo
 
-Adopt and write skills that improve this project's own workflows.
+Adopt and write skills that improve the project's own workflows.
 
-Examples:
-- build code review
-- frontend interaction review
-- external system diagnosis
-- content quality checks
-- bilingual consistency review
+Common categories worth starting with:
+- code review for the project's primary build or runtime layer
+- interaction review for frontend or UI components
+- external system diagnosis (hosting, CI, analytics)
+- content or documentation quality checks
+- bilingual or multi-locale consistency review (when applicable)
+
+> **Example from this project:** Agent Master Handbook dogfoods a build code review skill for `build/build.mjs`, a frontend interaction review skill for its templates and CSS, and a content traceability check for external claims. Each grew out of a recurring failure class spotted in real work.
 
 ### Track 2 — Curate the ecosystem
 
-Document:
-- primary skill standards and official docs
+Maintain a short, high-signal curated view of:
+- skill standards and official product documentation
 - trusted registries and hosting centers
 - criteria for selecting a skill
-- how to evaluate whether a local skill is ready for distribution
+- heuristics for deciding when a local skill is ready for distribution
 
-The goal is not to duplicate the ecosystem's documentation. The goal is to help practitioners enter it quickly, with better judgment.
+The goal is not to duplicate the ecosystem's documentation. The goal is to help practitioners enter it faster with better judgment.
 
 ## Closing
 

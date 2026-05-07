@@ -3,7 +3,7 @@ title: "如何理解 Agent Skills 生态"
 description: "一份实践指南：从原始信源出发，查找、评估并集成社区 skills，包括 skills.sh、Claude Code、Cursor 和 Agent Skills 规范。"
 lang: zh
 pair: en.md
-lastUpdated: 2026-04-30
+lastUpdated: 2026-05-07
 status: draft
 ---
 
@@ -164,33 +164,35 @@ Skill 最强的地方在于，它能编码**判断清单**和**工作流记忆**
 
 如果一开始就从第 6 步出发，往往会发布出“听起来合理”但没有经过真实使用检验的 skill；如果永远停留在第 2 步，又会把一类有价值的问题只解决给自己。
 
-## 这个项目应该怎么做
+## 任何 agent-ready 项目都应该怎么做
 
-对于 Agent Master Handbook，skills 应该同时被视为：
+在任何 agent-ready 项目中，skills 都应该同时被视为两件事：
 
 1. **项目工具层** — 用来更好维护本仓库的能力
-2. **知识内容层** — 作为手册本身要覆盖和整理的主题
+2. **知识内容层** — 值得和代码一起培养的对 skills 生态的理解
 
-这意味着要并行推进两条线：
+这意味着需要并行推进两条线。
 
 ### 路线 1 — 在仓库中 dogfood skills
 
-采用或编写 skills 来改善项目自己的工作流。
+采用或编写 skills 来改善项目自身的工作流。
 
-例如：
-- build code review
-- frontend interaction review
-- external system diagnosis
-- content quality checks
-- bilingual consistency review
+值得起步的类别：
+- 针对项目主构建或运行时层的代码审查
+- 针对前端或 UI 组件的交互审查
+- 外部系统（托管、CI、分析）诊断
+- 内容或文档质量检查
+- 双语或多语言一致性审查（如适用）
+
+> **本项目的例子：** Agent Master Handbook 在实际使用中沉淀了针对 `build/build.mjs` 的 build code review skill、面向模板与 CSS 的 frontend interaction review skill，以及用于外部引用的 content traceability 检查。每一个 skill 都来自真实工作中反复出现的失败模式。
 
 ### 路线 2 — 对生态进行 curated
 
-整理：
+维护一份精简、高信息密度的筛选视角，覆盖：
 - skill 规范与官方产品文档
 - 值得信任的目录和托管中心
 - 选择 skill 的标准
-- 如何判断一个本地 skill 是否已经准备好进行分发
+- 判断本地 skill 是否可以分发的启发式规则
 
 目标不是重复生态文档，而是让实践者更快、更稳地进入生态。
 

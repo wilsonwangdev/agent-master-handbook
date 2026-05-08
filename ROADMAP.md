@@ -35,9 +35,13 @@ Current status and next steps for Agent Master Handbook. Each item links to a Gi
 - [x] Skills ecosystem guide standards and distribution expansion (#56)
 - [x] Handbook traceability cleanup for skills ecosystem (#57)
 - [x] Content page UX — dedupe title, heading anchors, spacing, FOUC prevention (#58)
+- [x] Quality Baseline rules for CSS variables, dividers, and FOUC prevention (#67)
+- [x] AEO baseline: explicit AI bot allow-list, JSON-LD differentiation, identity graph (#69)
+- [x] llms-full.txt for AI ingestion (#70)
 
 ## Next
 
+- [ ] AI visibility / AEO content guide (EN+ZH): explicit AI bot signaling, JSON-LD strategy, llms.txt + llms-full.txt patterns, external submission targets
 - [ ] Content generalization Phase 2: generalize existing guides per SPEC 006
 - [ ] Content generalization Phase 3: split skills into generic + project-specific
 - [ ] Content generalization Phase 4: parameterize rules

@@ -49,6 +49,7 @@ Local development: run `npm run watch` in one terminal, `npm run dev` in another
 6. `gh pr list --state open` — check if any open PR has conflicts; if so, rebase it before creating a new branch
 7. Plan PR boundaries: list each independent concern as a separate PR BEFORE writing code. If a task touches unrelated files (e.g. path fix + font change + new command), it is multiple PRs.
 8. Check file overlap between planned PRs. If two PRs modify the same file, declare dependency and define merge order. The later PR rebases after the earlier one merges.
+9. **Right before `git checkout -b`**, verify `git branch --show-current` returns `main`. Squash-merge produces local commits whose contents have already landed under different SHAs — they look unmerged but aren't. Branching from such a stale local branch carries orphan commits into the new feature branch and pollutes its PR. See `journal/2026-05-08-stale-branch-base-pollution.md`.
 
 ### Pre-work checklist (run before writing code)
 

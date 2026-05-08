@@ -188,13 +188,14 @@ async function buildPages() {
       ? (lang === 'zh' ? `最后更新：${meta.lastUpdated}` : `Last updated: ${meta.lastUpdated}`)
       : '';
 
+    const sectionHasIndex = existsSync(join(SITE.contentDir, section, `index.${lang}.md`));
     const pageHtml = render(pageTemplate, {
       title: meta.title || '', content: html, lang,
       lastUpdatedLabel,
       pairPath: meta.pair ? `${SITE.base}/${pairLang}/${rel}/` : '', pairLang,
       sectionTitle: section.charAt(0).toUpperCase() + section.slice(1),
       homePath: `${SITE.base}/${lang}/`,
-      sectionPath: `${SITE.base}/${lang}/`,
+      sectionPath: sectionHasIndex ? `${SITE.base}/${lang}/${section}/` : `${SITE.base}/${lang}/`,
       contributeUrl: `${SITE.repo}/blob/main/CONTRIBUTING.md`,
     });
     const fullHtml = render(baseTemplate, {
@@ -280,8 +281,10 @@ async function buildIndex(pages) {
 
     let listingsHtml = '';
     for (const [section, items] of Object.entries(sections)) {
+      const indexPage = items.find(p => p.rel === section);
+      const visibleItems = indexPage ? [indexPage] : items;
       listingsHtml += `<section class="section"><h2>${section}</h2><ul>`;
-      for (const item of items) {
+      for (const item of visibleItems) {
         listingsHtml += `<li><a href="${item.path}">${item.title || item.path}</a></li>`;
       }
       listingsHtml += '</ul></section>';

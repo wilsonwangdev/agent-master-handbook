@@ -149,3 +149,4 @@ When modifying content frontmatter, JSON-LD, `robots.txt`, or `llms.txt` generat
 - New content sections must be mapped in `SECTION_SCHEMA` (`build/build.mjs`) to a schema.org type. Default `Article` is acceptable only for sections without a better fit.
 - `robots.txt` explicitly allow-lists AI training and search crawlers (`GPTBot`, `ClaudeBot`, `OAI-SearchBot`, `Claude-SearchBot`, `PerplexityBot`, `Perplexity-User`, `Google-Extended`, etc.). Do not replace this with a bare `User-agent: *` — explicit listing is a signal, not redundancy.
 - Author and publisher identity live in `package.json` (`author`, `displayName`, `homepage`). Do not hardcode these in templates or build.mjs.
+- `llms-full.txt` concatenates all `status: published` English pages into one file for AI ingestion. Drafts and hidden pages are excluded. If a page's status changes, rebuild to update.

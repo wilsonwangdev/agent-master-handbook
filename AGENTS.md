@@ -143,3 +143,9 @@ When modifying CSS, templates, or font loading:
 - Spacing, border widths, and colors in CSS must reference `--space-*`, `--border-*`, and color tokens. Bare `rem`/`px` literals for margin, padding, gap, or border-width are a review finding. See `content/guides/css-variable-consistency/en.md` for the rationale.
 - When adding or changing a divider-style border, audit all existing dividers in the file as a set. Mixed widths (1px vs 2px) or mixed color tokens (`--border` vs `--border-bright`) count as inconsistency.
 - Dark-theme pages must inline the critical `background`/`color` CSS in `<head>` with a light-mode media-query fallback. Without it, first paint flashes white (FOUC) while the external stylesheet arrives.
+
+When modifying content frontmatter, JSON-LD, `robots.txt`, or `llms.txt` generation:
+- Curated entries must keep a `source:` field in frontmatter pointing to the original URL. The build emits it as `citation` / `isBasedOn` in JSON-LD so AI answer engines can trace claims back to primary sources.
+- New content sections must be mapped in `SECTION_SCHEMA` (`build/build.mjs`) to a schema.org type. Default `Article` is acceptable only for sections without a better fit.
+- `robots.txt` explicitly allow-lists AI training and search crawlers (`GPTBot`, `ClaudeBot`, `OAI-SearchBot`, `Claude-SearchBot`, `PerplexityBot`, `Perplexity-User`, `Google-Extended`, etc.). Do not replace this with a bare `User-agent: *` — explicit listing is a signal, not redundancy.
+- Author and publisher identity live in `package.json` (`author`, `displayName`, `homepage`). Do not hardcode these in templates or build.mjs.

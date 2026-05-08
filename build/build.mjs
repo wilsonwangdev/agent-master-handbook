@@ -27,12 +27,20 @@ const SITE = {
   name: pkg.displayName,
   tagline: pkg.description,
   repo: typeof pkg.repository === 'string' ? pkg.repository : pkg.repository?.url,
+  author: typeof pkg.author === 'string' ? { name: pkg.author } : (pkg.author || {}),
   base: process.env.BASE_PATH || '',
   url: process.env.SITE_URL || pkg.homepage || '',
   noindex: process.env.NOINDEX === 'true',
   contentDir: join(ROOT, 'content'),
   templateDir: join(ROOT, 'build', 'templates'),
   outDir: join(ROOT, 'site'),
+};
+
+const SECTION_SCHEMA = {
+  concepts: 'TechArticle',
+  guides: 'TechArticle',
+  curated: 'Article',
+  evangelism: 'Article',
 };
 
 function parseFrontmatter(raw) {
@@ -82,10 +90,59 @@ function buildJsonLd(vars) {
     mainEntityOfPage: { '@type': 'WebPage', '@id': vars.canonicalUrl },
   };
   if (vars.lastUpdated) ld.dateModified = vars.lastUpdated;
+  if (SITE.author.name) {
+    ld.author = { '@type': 'Person', name: SITE.author.name, ...(SITE.author.url && { url: SITE.author.url }) };
+  }
+  if (SITE.url) {
+    ld.publisher = { '@type': 'Organization', name: SITE.name, url: SITE.url };
+  }
+  if (vars.source) {
+    ld.citation = { '@type': 'CreativeWork', url: vars.source };
+    ld.isBasedOn = vars.source;
+  }
   return `<script type="application/ld+json">${JSON.stringify(ld)}</script>`;
 }
 
-function seoVars({ lang, title, description, canonicalUrl, pairCanonicalUrl, pairLang, lastUpdated, schemaType, ogType }) {
+function buildHomepageJsonLd({ lang, canonicalUrl, description }) {
+  const graph = [
+    {
+      '@type': 'WebSite',
+      '@id': `${SITE.url}/#website`,
+      url: SITE.url,
+      name: SITE.name,
+      description: SITE.tagline,
+      inLanguage: lang,
+      publisher: { '@id': `${SITE.url}/#organization` },
+    },
+    {
+      '@type': 'Organization',
+      '@id': `${SITE.url}/#organization`,
+      name: SITE.name,
+      url: SITE.url,
+      ...(SITE.author.name && { founder: { '@id': `${SITE.url}/#author` } }),
+    },
+    {
+      '@type': 'WebPage',
+      '@id': canonicalUrl,
+      url: canonicalUrl,
+      name: SITE.name,
+      description,
+      inLanguage: lang,
+      isPartOf: { '@id': `${SITE.url}/#website` },
+    },
+  ];
+  if (SITE.author.name) {
+    graph.push({
+      '@type': 'Person',
+      '@id': `${SITE.url}/#author`,
+      name: SITE.author.name,
+      ...(SITE.author.url && { url: SITE.author.url, sameAs: [SITE.author.url] }),
+    });
+  }
+  return `<script type="application/ld+json">${JSON.stringify({ '@context': 'https://schema.org', '@graph': graph })}</script>`;
+}
+
+function seoVars({ lang, title, description, canonicalUrl, pairCanonicalUrl, pairLang, lastUpdated, schemaType, ogType, source, jsonLdOverride }) {
   return {
     description,
     canonicalUrl,
@@ -95,7 +152,7 @@ function seoVars({ lang, title, description, canonicalUrl, pairCanonicalUrl, pai
     ogType,
     noindex: SITE.noindex ? '<meta name="robots" content="noindex,follow">' : '',
     rssUrl: SITE.url ? `${SITE.url}/${lang}/feed.xml` : `${SITE.base}/${lang}/feed.xml`,
-    jsonLd: buildJsonLd({ title, description, lang, canonicalUrl, lastUpdated, type: schemaType }),
+    jsonLd: jsonLdOverride || buildJsonLd({ title, description, lang, canonicalUrl, lastUpdated, type: schemaType, source }),
     siteName: SITE.name,
     siteTagline: SITE.tagline,
     contributeUrl: `${SITE.repo}/blob/main/CONTRIBUTING.md`,
@@ -145,7 +202,10 @@ async function buildPages() {
       ...seoVars({
         lang, title: meta.title, description, canonicalUrl,
         pairCanonicalUrl: (SITE.url && meta.pair) ? `${SITE.url}/${pairLang}/${rel}/` : '',
-        pairLang, lastUpdated: meta.lastUpdated, schemaType: 'Article', ogType: 'article',
+        pairLang, lastUpdated: meta.lastUpdated,
+        schemaType: SECTION_SCHEMA[section] || 'Article',
+        ogType: 'article',
+        source: meta.source || '',
       }),
     });
 
@@ -248,6 +308,7 @@ async function buildIndex(pages) {
         lang, title: SITE.name, description, canonicalUrl,
         pairCanonicalUrl: SITE.url ? `${SITE.url}/${pairLang}/` : '',
         pairLang, schemaType: 'WebSite', ogType: 'website',
+        jsonLdOverride: SITE.url ? buildHomepageJsonLd({ lang, canonicalUrl, description }) : undefined,
       }),
     });
 
@@ -303,8 +364,32 @@ async function buildSitemap(pages) {
   await writeFile(join(SITE.outDir, 'sitemap.xml'), xml);
 }
 
+const AI_USER_AGENTS = [
+  'GPTBot',
+  'OAI-SearchBot',
+  'ChatGPT-User',
+  'ClaudeBot',
+  'Claude-SearchBot',
+  'Claude-User',
+  'anthropic-ai',
+  'PerplexityBot',
+  'Perplexity-User',
+  'Google-Extended',
+  'Googlebot',
+  'Bingbot',
+  'Applebot',
+  'Applebot-Extended',
+  'DuckAssistBot',
+  'Meta-ExternalAgent',
+  'cohere-ai',
+];
+
 async function buildRobots() {
-  let txt = 'User-agent: *\nAllow: /\n';
+  let txt = '';
+  for (const ua of AI_USER_AGENTS) {
+    txt += `User-agent: ${ua}\nAllow: /\n\n`;
+  }
+  txt += 'User-agent: *\nAllow: /\n';
   if (SITE.url) txt += `\nSitemap: ${SITE.url}/sitemap.xml\n`;
   await writeFile(join(SITE.outDir, 'robots.txt'), txt);
 }
@@ -340,6 +425,14 @@ async function buildLlmsTxt(pages) {
   const visible = pages.filter(p => p.status !== 'hidden');
   let txt = `# ${SITE.name}\n\n`;
   txt += `> ${SITE.tagline} for agent practitioners. Concepts, guides, curated articles, and agent-ready practices for building with AI agents.\n\n`;
+  if (SITE.author.name) {
+    txt += `**Author**: ${SITE.author.name}`;
+    if (SITE.author.url) txt += ` (${SITE.author.url})`;
+    txt += '\n';
+    if (SITE.repo) txt += `**Repository**: ${SITE.repo}\n`;
+    if (SITE.url) txt += `**Homepage**: ${SITE.url}\n`;
+    txt += '\n';
+  }
   for (const section of ['concepts', 'guides', 'curated', 'evangelism']) {
     const items = visible.filter(p => p.lang === 'en' && p.section === section);
     if (!items.length) continue;

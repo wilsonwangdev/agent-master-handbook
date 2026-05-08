@@ -214,7 +214,7 @@ async function buildPages() {
     await mkdir(dirname(outPath), { recursive: true });
     await writeFile(outPath, fullHtml);
     await writeFile(mdOutPath, raw);
-    pages.push({ title: meta.title, description, lang, section, path: `${SITE.base}/${lang}/${rel}/`, status: meta.status, lastUpdated: meta.lastUpdated, rel, hasPair: !!meta.pair });
+    pages.push({ title: meta.title, description, lang, section, path: `${SITE.base}/${lang}/${rel}/`, status: meta.status, lastUpdated: meta.lastUpdated, rel, hasPair: !!meta.pair, body });
   }
   return pages;
 }
@@ -431,6 +431,7 @@ async function buildLlmsTxt(pages) {
     txt += '\n';
     if (SITE.repo) txt += `**Repository**: ${SITE.repo}\n`;
     if (SITE.url) txt += `**Homepage**: ${SITE.url}\n`;
+    if (SITE.url) txt += `**Full content**: ${SITE.url}/llms-full.txt\n`;
     txt += '\n';
   }
   for (const section of ['concepts', 'guides', 'curated', 'evangelism']) {
@@ -446,6 +447,45 @@ async function buildLlmsTxt(pages) {
     txt += '\n';
   }
   await writeFile(join(SITE.outDir, 'llms.txt'), txt);
+}
+
+async function buildLlmsFullTxt(pages) {
+  const published = pages
+    .filter(p => p.lang === 'en' && p.status === 'published')
+    .sort((a, b) => {
+      const order = ['concepts', 'guides', 'curated', 'evangelism'];
+      const sa = order.indexOf(a.section);
+      const sb = order.indexOf(b.section);
+      if (sa !== sb) return (sa < 0 ? 99 : sa) - (sb < 0 ? 99 : sb);
+      return (a.title || '').localeCompare(b.title || '');
+    });
+  if (!published.length) return;
+
+  let txt = `# ${SITE.name} — Full Content\n\n`;
+  txt += `> ${SITE.tagline}. This file concatenates all published English content in one document, optimized for AI ingestion.\n\n`;
+  if (SITE.author.name) {
+    txt += `**Author**: ${SITE.author.name}`;
+    if (SITE.author.url) txt += ` (${SITE.author.url})`;
+    txt += '\n';
+    if (SITE.repo) txt += `**Repository**: ${SITE.repo}\n`;
+    if (SITE.url) txt += `**Homepage**: ${SITE.url}\n`;
+  }
+  txt += `**Index**: ${SITE.url ? `${SITE.url}/llms.txt` : '/llms.txt'}\n\n`;
+  txt += '---\n\n';
+
+  for (const p of published) {
+    const url = SITE.url ? `${SITE.url}/en/${p.rel}/` : p.path;
+    txt += `## ${p.title}\n\n`;
+    txt += `- Section: ${p.section}\n`;
+    txt += `- URL: ${url}\n`;
+    if (p.lastUpdated) txt += `- Last updated: ${p.lastUpdated}\n`;
+    if (p.description) txt += `- Summary: ${p.description}\n`;
+    txt += '\n';
+    txt += p.body.trimStart().replace(/^#\s+.+\n+/, '').trim();
+    txt += '\n\n---\n\n';
+  }
+
+  await writeFile(join(SITE.outDir, 'llms-full.txt'), txt);
 }
 
 async function buildSitemapMd(pages) {
@@ -481,6 +521,7 @@ async function main() {
     buildRobots(),
     buildRSS(pages),
     buildLlmsTxt(pages),
+    buildLlmsFullTxt(pages),
     buildSitemapMd(pages),
   ]);
   console.log(`Built ${pages.length} pages → site/`);

@@ -3,6 +3,10 @@
   "displayName": "Agent Master Handbook",
   "description": "AI Native Handbook for Agent Practitioners",
   "homepage": "https://agent-master-handbook.vercel.app",
+  "author": {
+    "name": "Wilson",
+    "url": "https://github.com/wilsonwangdev"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/wilsonwangdev/agent-master-handbook"

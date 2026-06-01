@@ -136,6 +136,8 @@ After modifying CSS, templates, or interactive components, run the frontend inte
 
 Lighthouse CI runs on every PR. Current baseline (2026-04-24): Performance 100, Accessibility 100, Best Practices 96, SEO 100.
 
+Before changing site visuals (layout order, spacing, type scale, accent color, divider style), review `rules/design-intent.md` for the project's stated design intent. Violating intent silently is a review finding.
+
 When modifying CSS, templates, or font loading:
 - `--muted` color must maintain ≥ 4.5:1 contrast ratio against `--bg`
 - Links in text content must be distinguishable without color (underline)

@@ -38,6 +38,9 @@ Current status and next steps for Agent Master Handbook. Each item links to a Gi
 - [x] Quality Baseline rules for CSS variables, dividers, and FOUC prevention (#67)
 - [x] AEO baseline: explicit AI bot allow-list, JSON-LD differentiation, identity graph (#69)
 - [x] llms-full.txt for AI ingestion (#70)
+- [x] Codify design intent rule for visual changes (#74)
+- [x] Puppeteer-based screenshot script for visual review (#75)
+- [x] Wide-viewport layout — `min-width: 1100px` breakpoint widens content rather than whitespace; resolves the 35% empty-canvas issue captured in [journal/2026-05-08-wide-viewport-whitespace.md](journal/2026-05-08-wide-viewport-whitespace.md) (#76)
 
 ## Next
 

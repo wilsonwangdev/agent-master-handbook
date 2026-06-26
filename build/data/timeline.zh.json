@@ -58,5 +58,14 @@
       { "name": "Martin Fowler", "url": "https://martinfowler.com/articles/harness-engineering.html" }
     ],
     "desc": "Agent = 模型 + Harness。构建模型周围的系统，让 AI Agent 在生产环境中可靠工作。"
+  },
+  {
+    "year": "2026.06",
+    "title": "循环工程",
+    "credits": [
+      { "name": "Addy Osmani", "url": "https://addyosmani.com/blog/loop-engineering/" },
+      { "name": "Boris Cherny", "url": "https://x.com/rohanpaul_ai/status/2063289804708835412" }
+    ],
+    "desc": "不再亲手提示 Agent——设计让 Agent 自我提示、自我验证、自我迭代的循环系统。"
   }
 ]

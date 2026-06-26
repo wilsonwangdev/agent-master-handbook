@@ -58,5 +58,14 @@
       { "name": "Martin Fowler", "url": "https://martinfowler.com/articles/harness-engineering.html" }
     ],
     "desc": "Agent = Model + Harness. Building the systems around models that make AI agents reliable in production."
+  },
+  {
+    "year": "2026.06",
+    "title": "Loop Engineering",
+    "credits": [
+      { "name": "Addy Osmani", "url": "https://addyosmani.com/blog/loop-engineering/" },
+      { "name": "Boris Cherny", "url": "https://x.com/rohanpaul_ai/status/2063289804708835412" }
+    ],
+    "desc": "No longer prompting agents by hand — designing systems that prompt, verify, and iterate on their own."
   }
 ]

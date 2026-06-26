@@ -410,6 +410,14 @@ h3:hover .heading-anchor,
   margin-bottom: var(--space-md);
 }
 
+.section-desc {
+  font-size: 0.875rem;
+  color: var(--muted);
+  margin: 0 0 var(--space-md);
+  line-height: 1.6;
+  max-width: 42rem;
+}
+
 .section ul {
   list-style: none;
   padding-left: 0;

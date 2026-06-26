@@ -30,9 +30,7 @@ const VIEWPORTS = [
 
 const PAGES = [
   { path: '/en/', slug: 'home-en' },
-  { path: '/zh/', slug: 'home-zh' },
-  { path: '/en/concepts/harness-engineering/', slug: 'harness-engineering' },
-  { path: '/en/guides/skills-ecosystem/', slug: 'skills-ecosystem' },
+  { path: '/en/concepts/loop-engineering/', slug: 'loop-engineering' },
 ];
 
 const BASE_URL = process.env.SCREENSHOT_URL || 'http://localhost:3000';

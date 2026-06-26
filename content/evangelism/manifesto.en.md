@@ -49,6 +49,10 @@ Failures are not just incidents to resolve — they are training data for the sy
 
 Use established protocols (MCP for tool invocation, conventional commit formats, standard directory layouts) over custom solutions. Standards reduce the context an agent needs to operate.
 
+### 7. Design Loops, Not Prompts
+
+The next frontier is [loop engineering](/en/concepts/loop-engineering/) — designing systems that prompt, verify, and iterate on their own. Shift from typing every interaction to designing the feedback loops that sustain autonomous work.
+
 ## The Goal
 
-The goal of AI Native engineering is not to remove humans from the loop. It is to create environments where the collaboration between humans and agents is so well-structured that both can do their best work — humans on judgment, creativity, and direction; agents on execution, consistency, and scale.
+The goal of AI Native engineering is not to remove humans from the loop. It is to create environments where the collaboration between humans and agents is so well-structured that both can do their best work — humans on judgment, creativity, and direction; agents on execution, consistency, and scale. Loop engineering is the architectural layer that makes this sustainable at scale.

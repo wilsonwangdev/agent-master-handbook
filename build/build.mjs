@@ -254,19 +254,21 @@ function buildTimelineHtml(items, title) {
 }
 
 async function buildIndex(pages) {
-  const [baseTemplate, indexTemplate, promptEn, promptZh, timelineEn, timelineZh] = await Promise.all([
+  const [baseTemplate, indexTemplate, promptEn, promptZh, timelineEn, timelineZh, sectionIntrosRaw] = await Promise.all([
     loadTemplate('base.html'),
     loadTemplate('index.html'),
     readFile(join(ROOT, 'build', 'data', 'quickstart.en.md'), 'utf-8'),
     readFile(join(ROOT, 'build', 'data', 'quickstart.zh.md'), 'utf-8'),
     readFile(join(ROOT, 'build', 'data', 'timeline.en.json'), 'utf-8'),
     readFile(join(ROOT, 'build', 'data', 'timeline.zh.json'), 'utf-8'),
+    readFile(join(ROOT, 'build', 'data', 'section-intros.json'), 'utf-8'),
   ]);
   const prompts = {
     en: promptEn.trim().replace('{{siteUrl}}', SITE.url),
     zh: promptZh.trim().replace('{{siteUrl}}', SITE.url),
   };
   const timelines = { en: JSON.parse(timelineEn), zh: JSON.parse(timelineZh) };
+  const sectionIntros = JSON.parse(sectionIntrosRaw);
   const i18n = {
     en: { quickstartTitle: 'Quick Start', quickstartDesc: 'Copy this prompt into any AI coding agent to set up an agent-ready harness environment.', copyLabel: 'Copy', quickstartHint: 'Works with Claude Code, Cursor, Windsurf, Codex, and other agents. Run before or after your framework scaffold.', timelineTitle: 'Evolution of Agent Practices' },
     zh: { quickstartTitle: '快速开始', quickstartDesc: '将此提示词复制到任意 AI 编码工具中，即可搭建 agent-ready harness 环境。', copyLabel: '复制', quickstartHint: '适用于 Claude Code、Cursor、Windsurf、Codex 等 agent 工具。可在框架脚手架之前或之后运行。', timelineTitle: 'Agent 实践演进' },
@@ -283,7 +285,8 @@ async function buildIndex(pages) {
     for (const [section, items] of Object.entries(sections)) {
       const indexPage = items.find(p => p.rel === section);
       const visibleItems = indexPage ? [indexPage] : items;
-      listingsHtml += `<section class="section"><h2>${section}</h2><ul>`;
+      const intro = (sectionIntros[lang] && sectionIntros[lang][section]) ? `<p class="section-desc">${sectionIntros[lang][section]}</p>` : '';
+      listingsHtml += `<section class="section"><h2>${section}</h2>${intro}<ul>`;
       for (const item of visibleItems) {
         listingsHtml += `<li><a href="${item.path}">${item.title || item.path}</a></li>`;
       }

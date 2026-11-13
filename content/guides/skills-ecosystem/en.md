@@ -3,7 +3,7 @@ title: "Navigating the Agent Skills Ecosystem"
 description: "A practical guide to finding, evaluating, and integrating community skills from primary sources such as skills.sh, Claude Code, Cursor, and the Agent Skills specification."
 lang: en
 pair: zh.md
-lastUpdated: 2026-05-07
+lastUpdated: 2026-11-13
 status: published
 ---
 
@@ -16,6 +16,12 @@ A practical guide to finding, evaluating, and integrating community skills into 
 Skills are one of the most effective ways to improve agent performance without rebuilding the agent itself. They package repeatable workflows, review checklists, and domain-specific guidance into reusable units that can be installed, shared, and invoked on demand.
 
 This makes them a core harness engineering lever.
+
+## Where Agent Skills Came From
+
+- **October 16, 2025.** Anthropic publicly introduced Agent Skills for Claude. Its engineering article, written by Barry Zhang, Keith Lazuka, and Mahesh Murag, explains how an agent loads task-specific instructions from `SKILL.md` and accesses supporting files as needed. [Launch announcement](https://claude.com/resources/articles/skills) · [Engineering article](https://www.anthropic.com/research/equipping-agents-for-the-real-world-with-agent-skills)
+- **December 18, 2025.** Anthropic published the Agent Skills format as an open standard so that the same skill could be used across compatible agent platforms. [Open standard announcement](https://claude.com/resources/articles/organization-skills-and-directory)
+- **October 22, 2026.** Anthropic announced the donation of the standard to the Agentic AI Foundation (AAIF). The announcement traces the format back to Anthropic’s work on Claude Code. [AAIF donation announcement](https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation)
 
 ## Use This Guide as an Entry Point
 

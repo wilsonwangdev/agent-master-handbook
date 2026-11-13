@@ -51,6 +51,14 @@
     "desc": "From writing prompts to designing information architecture. The art of filling the context window with just the right information."
   },
   {
+    "year": "2025.10",
+    "title": "Agent Skills",
+    "credits": [
+      { "name": "Anthropic", "url": "https://claude.com/resources/articles/skills" }
+    ],
+    "desc": "On October 16, Anthropic introduced Agent Skills for Claude, packaging instructions and supporting files into reusable folders that agents load on demand."
+  },
+  {
     "year": "2026.03",
     "title": "Harness Engineering",
     "credits": [

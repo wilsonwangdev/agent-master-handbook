@@ -51,6 +51,14 @@
     "desc": "从写提示词到设计信息架构。用恰到好处的信息填充上下文窗口的艺术与科学。"
   },
   {
+    "year": "2025.10",
+    "title": "Agent Skills",
+    "credits": [
+      { "name": "Anthropic", "url": "https://claude.com/resources/articles/skills" }
+    ],
+    "desc": "10 月 16 日，Anthropic 为 Claude 推出 Agent Skills，将指令和配套文件打包成可复用的目录，供 Agent 按需加载。"
+  },
+  {
     "year": "2026.03",
     "title": "Harness 工程",
     "credits": [

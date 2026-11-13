@@ -3,7 +3,7 @@ title: "如何理解 Agent Skills 生态"
 description: "一份实践指南：从原始信源出发，查找、评估并集成社区 skills，包括 skills.sh、Claude Code、Cursor 和 Agent Skills 规范。"
 lang: zh
 pair: en.md
-lastUpdated: 2026-05-07
+lastUpdated: 2026-11-13
 status: published
 ---
 
@@ -16,6 +16,12 @@ status: published
 Skills 是提升 agent 表现最有效的手段之一，而且不需要重造 agent 本身。它将可重复的工作流、审查清单和领域化经验打包成可复用单元，使其能够被安装、共享和按需调用。
 
 因此，skills 是 harness engineering 的核心杠杆之一。
+
+## Agent Skills 的起源
+
+- **2025 年 10 月 16 日**，Anthropic 为 Claude 公开推出 Agent Skills。Barry Zhang、Keith Lazuka 和 Mahesh Murag 共同撰写的工程文章介绍了 Agent 如何从 `SKILL.md` 加载任务指令，并按需读取配套文件。 [发布公告](https://claude.com/resources/articles/skills) · [工程文章](https://www.anthropic.com/research/equipping-agents-for-the-real-world-with-agent-skills)
+- **2025 年 12 月 18 日**，Anthropic 将 Agent Skills 格式发布为开放标准，让同一个 Skill 可以在支持该规范的不同 Agent 平台上使用。 [开放标准公告](https://claude.com/resources/articles/organization-skills-and-directory)
+- **2026 年 10 月 22 日**，Anthropic 宣布将该标准捐赠给 Agentic AI Foundation（AAIF）。公告也回顾了这一格式如何源于 Claude Code 的开发工作。 [AAIF 捐赠公告](https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation)
 
 ## 把这篇指南当作入口，而不是替代品
 
